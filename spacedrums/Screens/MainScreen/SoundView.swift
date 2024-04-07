@@ -9,6 +9,7 @@ struct SoundViewModel {
 }
 
 struct SoundView: View {
+    @EnvironmentObject var router: Router
     var model: SoundViewModel
     var body: some View {
         ZStack{
@@ -33,7 +34,7 @@ struct SoundView: View {
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(model.isActive ? .white : .gray)
                     HStack {
-                        soundButton(text: "Change", action: {})
+                        soundButton(text: "Change", action: {router.routeTo(.collection)})
                         soundButton(text: model.isActive ? "Mute": "Unmute", action: {})
                     }
 
@@ -67,19 +68,6 @@ struct SoundView: View {
             background: .white.opacity(0.2)
         )
     }
-
-    func soundNavigationButton(text: String, destination: some View) -> some View{
-        return navigationButton(
-            text: text,
-            destination: destination,
-            width: 100,
-            height: 40,
-            radius: 20,
-            blendMode: model.isActive ? .plusLighter : .sourceAtop,
-            background: .white.opacity(0.2)
-        )
-    }
-
     func getDisplayName(_ name: String) -> String {
         return String(name.split(separator: "/").last ?? "file")
     }

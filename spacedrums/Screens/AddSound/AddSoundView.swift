@@ -9,6 +9,7 @@ enum AddSoundMode {
 
 struct AddSoundView: View {
     @EnvironmentObject var router: Router
+    @Environment(\.dismiss) var dismiss
 
     init(mode: AddSoundMode) {
         self.mode = mode
@@ -27,7 +28,7 @@ struct AddSoundView: View {
             case .detected:
                 detected.padding(.top, 130)
             }
-        }
+        }.navigationTitle("")
     }
 
     var listening: some View {
@@ -57,8 +58,8 @@ struct AddSoundView: View {
             frequency.padding(.bottom, 80)
             Text("Use it?").foregroundColor(.white).modifier(regular()).padding(.bottom, 50)
             HStack(alignment: .center, spacing: 40) {
-                button(text: "Add", action: {})
-                button(text: "Try again", action: {})
+                button(text: "Add", action: {router.routeTo(.main)})
+                button(text: "Try again", action: {dismiss()})
             }
 
         }

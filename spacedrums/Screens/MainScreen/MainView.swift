@@ -55,13 +55,21 @@ struct MainView:  View {
                     //.frame(maxWidth: .infinity, alignment: .center)
                // button(text: "Save", action: {}).frame(maxWidth: .infinity, alignment: .trailing)
             }.frame(maxWidth: .infinity, alignment: .leading)
-            Button(action: {router.routeTo(.addSound)}){
+            Button(action: addSound){
                 Text("+")
                     .font(.system(size: 30, weight: .semibold))
                     .foregroundColor(.white)
             }.frame(maxWidth: .infinity, alignment: .trailing)
 
         }.padding(.horizontal,20)
+
+    }
+
+    func addSound(){
+        router.routeTo(.addSound(mode: .listening))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            router.routeTo(.addSound(mode: .detected))
+        }
 
     }
 

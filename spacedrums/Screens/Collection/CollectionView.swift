@@ -28,7 +28,9 @@ struct CollectionView: View {
                 button(text: "Add", action: {addSound(file: selectedFile)})
                 button(text: "Try", action: {playSound()})
             }
-        }.background(ImageResources.background.resizable().scaledToFill().edgesIgnoringSafeArea(.all))
+        }
+        .background(ImageResources.background.resizable().scaledToFill().edgesIgnoringSafeArea(.all))
+        .toolbarBackground(Color.pink, for: .navigationBar)
     }
 
 

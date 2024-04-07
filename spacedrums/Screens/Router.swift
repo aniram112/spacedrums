@@ -8,7 +8,7 @@ class Router: ObservableObject {
         case main
         case saved
         case collection
-        case addSound
+        case addSound(mode: AddSoundMode)
     }
 
     // Used to programatically control our navigation stack
@@ -23,8 +23,8 @@ class Router: ObservableObject {
             SavedView()
         case .collection:
            CollectionView()
-        case .addSound:
-            AddSoundView(mode: .listening)
+        case .addSound(let mode):
+            AddSoundView(mode: mode)
         }
     }
 
@@ -35,7 +35,7 @@ class Router: ObservableObject {
 
     // Used to go back to the previous screen
     func routeBack() {
-        path.removeLast()
+            path.removeLast()
     }
 
     // Pop to the root screen in our hierarchy
@@ -60,7 +60,10 @@ struct RouterView<Content: View>: View {
                     router.view(for: route)
                 }
         }.accentColor(.white)
+        .toolbarBackground(Color.pink, for: .navigationBar)
         .environmentObject(router)
+
+        //.navigationBarHidden(true)
     }
 }
 
