@@ -36,11 +36,7 @@ struct SavedView: View {
         .listStyle(.plain)
         //.background(Colors.backgroundFigma.ignoresSafeArea())
         .background(ImageResources.background.resizable().scaledToFill().ignoresSafeArea())
-        .toolbarColorScheme(.dark, for: .navigationBar)
-        //.toolbarBackground(.blendMode(.plusLighter), for: .navigationBar)
-
-        //.background(Colors.backgroundFigma.ignoresSafeArea())
-        //.navigationBarHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     func delete(item: SavedSpaceModel) {

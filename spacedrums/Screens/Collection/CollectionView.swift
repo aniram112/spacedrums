@@ -30,8 +30,7 @@ struct CollectionView: View {
             }
         }
         .background(ImageResources.background.resizable().scaledToFill().edgesIgnoringSafeArea(.all))
-        .toolbarBackground(Color.pink, for: .navigationBar)
-    }
+        .navigationBarTitleDisplayMode(.inline)    }
 
 
     var categories: some View {
