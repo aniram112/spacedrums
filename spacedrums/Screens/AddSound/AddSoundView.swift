@@ -8,12 +8,12 @@ enum AddSoundMode {
 }
 
 struct AddSoundView: View {
+    @EnvironmentObject var router: Router
+
     init(mode: AddSoundMode) {
         self.mode = mode
     }
     //@Environment(\.presentationMode) var presentationMode =
-
-
 
     var body: some View {
         ZStack(alignment: .top) {

@@ -9,6 +9,7 @@ struct SavedSpaceModel: Codable {
 
 struct SavedView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var router: Router
     //var delegate: SpaceDelegate?
 
     var mock = [SavedSpaceModel(name: "mock", sources: ["a"], date: "13.12.1312"),
@@ -35,8 +36,11 @@ struct SavedView: View {
         .listStyle(.plain)
         //.background(Colors.backgroundFigma.ignoresSafeArea())
         .background(ImageResources.background.resizable().scaledToFill().ignoresSafeArea())
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        //.toolbarBackground(.blendMode(.plusLighter), for: .navigationBar)
+
         //.background(Colors.backgroundFigma.ignoresSafeArea())
-        .navigationBarHidden(true)
+        //.navigationBarHidden(true)
     }
 
     func delete(item: SavedSpaceModel) {
@@ -71,10 +75,12 @@ struct SavedView: View {
                     .resizable()
                     .frame(width:50, height: 50)
                     .foregroundColor(.white)
+                
             }.frame(width: 300, height: 80).fixedSize()
         }
         .listRowBackground(Color.clear)
         .listRowSeparator(.hidden)
+        //.background(NavigationLink("", destination: MainView()).opacity(0))
         .onTapGesture {
             openSpace(model.sources)
 
@@ -84,6 +90,8 @@ struct SavedView: View {
     }
 
     private func openSpace(_ sources: [String]) {
+        print("pupupu")
+        router.routeTo(.main)
         //delegate?.setSpace(newSources: sources)
         //self.presentationMode.wrappedValue.dismiss()
     }

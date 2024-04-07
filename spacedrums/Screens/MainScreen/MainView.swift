@@ -3,6 +3,7 @@ import SwiftUI
 
 struct MainView:  View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var router: Router
     //var delegate: SpaceDelegate?
 
     var mock = [
@@ -16,24 +17,52 @@ struct MainView:  View {
     //var empty: [SavedSpaceModel] = []
 
     var body: some View {
-        List{
-            ForEach(mock, id: \.file.name) { item in
-                SoundView(model: item)
-                    .padding(.bottom, 20)
-                    .swipeActions(edge: .trailing) {
-                        Button(role: .destructive) {
-                            delete(item: item)
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
+            VStack {
+                navbar
+                List{
+                    ForEach(mock, id: \.file.name) { item in
+                        SoundView(model: item)
+                            .padding(.bottom, 20)
+                            .swipeActions(edge: .trailing) {
+                                Button(role: .destructive) {
+                                    delete(item: item)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
                     }
+                }
+                .listStyle(.plain)
             }
-        }
-        .listStyle(.plain)
-        //.background(Colors.backgroundFigma.ignoresSafeArea())
-        .background(ImageResources.background.resizable().scaledToFill().ignoresSafeArea())
-        //.background(Colors.backgroundFigma.ignoresSafeArea())
-        .navigationBarHidden(true)
+            .background(ImageResources.background.resizable().scaledToFill().ignoresSafeArea())
+            .navigationBarHidden(true)
+            .navigationTitle("")
+    }
+
+    var navbar: some View{
+        HStack {
+            HStack(spacing: 20){
+                Button(action: { router.routeTo(.saved) }){
+                    Text("Open")
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundColor(.white)
+                        .fixedSize()
+                }//.frame(maxWidth: .infinity, alignment: .leading)
+                Text("Save")
+                    .font(.system(size: 20, weight: .semibold))
+                    .foregroundColor(.white)
+                    .fixedSize()
+                    //.frame(maxWidth: .infinity, alignment: .center)
+               // button(text: "Save", action: {}).frame(maxWidth: .infinity, alignment: .trailing)
+            }.frame(maxWidth: .infinity, alignment: .leading)
+            Button(action: {router.routeTo(.addSound)}){
+                Text("+")
+                    .font(.system(size: 30, weight: .semibold))
+                    .foregroundColor(.white)
+            }.frame(maxWidth: .infinity, alignment: .trailing)
+
+        }.padding(.horizontal,20)
+
     }
 
     func delete(item: SoundViewModel) {

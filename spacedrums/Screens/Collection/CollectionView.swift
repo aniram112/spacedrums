@@ -21,7 +21,7 @@ struct CollectionView: View {
     var body: some View {
         VStack(spacing: 20){
             categories
-                .padding(.top,40)
+                //.padding(.top,40)
                 .padding(.horizontal,20)
             grid
             HStack(alignment: .center, spacing: 40) {

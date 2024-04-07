@@ -16,7 +16,6 @@ struct TunerData {
 class TunerConductor: ObservableObject, HasAudioEngine {
     @Published var data = TunerData()
     @Published var isPink = false
-    @Published var playingNote = false
     @Published var gain = 0.0
 
     let engine = AudioEngine()
@@ -51,21 +50,23 @@ class TunerConductor: ObservableObject, HasAudioEngine {
 
         let silencer = Fader(input, gain: 0)
         mixer.addInput(silencer)
-        mixer.addInput(player)
+        //mixer.addInput(player)
+        mixer.addInput(instrument)
         engine.output = mixer
 
-         guard let url = Bundle.main.url(forResource: "cheeb-snr", withExtension: "wav") else {
+        guard let url = Bundle.main.url(forResource: "cheeb-snr", withExtension: "wav") else {
             fatalError("\"cheeb-snr.wav\" file not found.")
         }
         do {
             let file = try AVAudioFile(forReading: url)
-            try player.load(file: file)
+            //try player.load(file: file)
+            try instrument.loadAudioFile(file)
         } catch {
             print("yeet error")
         }
 
         //player.play()
-
+        //instrument.play()
 
         //micBooster = Fader(micMixer)
         //micBooster.gain = 10
@@ -90,13 +91,13 @@ class TunerConductor: ObservableObject, HasAudioEngine {
 
 
         //try? musicEngine.start()
-       // musicEngine.output = instrument
+        // musicEngine.output = instrument
 
         tracker.start()
         //try? musicEngine.start()
-       // if (playingNote) {
+        // if (playingNote) {
         //    instrument.play(noteNumber: MIDINoteNumber(36), velocity: 90, channel: 0)
-       // }
+        // }
     }
 
     func update(_ pitch: AUValue, _ amp: AUValue) {
@@ -106,88 +107,86 @@ class TunerConductor: ObservableObject, HasAudioEngine {
 
         //if (abs(data.pitch - pitch) >= 10 )
         //{
-            if isPink { isPink = false }
-            else { isPink = true }
-            //print("yeet changing colors \(isPink)")
-        if amp > 0.1, playingNote == false {
+        if isPink { isPink = false }
+        else { isPink = true }
+        //print("yeet changing colors \(isPink)")
+        if amp > 0.1 {
             //playingNote = true
-            player.play()
+            //player.play()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
+                self.instrument.play()
+                //print("yeet should play note")
+            }
             //instrument.play(noteNumber: MIDINoteNumber(36), velocity: 90, channel: 0)
-            print("yeet should play note")
+
         }// else { playingNote = false }
 
         data.pitch = pitch
         data.amplitude = amp
 
         /*var frequency = pitch
-        while frequency > Float(noteFrequencies[noteFrequencies.count - 1]) {
-            frequency /= 2.0
-        }
-        while frequency < Float(noteFrequencies[0]) {
-            frequency *= 2.0
-        }
+         while frequency > Float(noteFrequencies[noteFrequencies.count - 1]) {
+         frequency /= 2.0
+         }
+         while frequency < Float(noteFrequencies[0]) {
+         frequency *= 2.0
+         }
 
-        var minDistance: Float = 10000.0
-        var index = 0
+         var minDistance: Float = 10000.0
+         var index = 0
 
-        for possibleIndex in 0 ..< noteFrequencies.count {
-            let distance = fabsf(Float(noteFrequencies[possibleIndex]) - frequency)
-            if distance < minDistance {
-                index = possibleIndex
-                minDistance = distance
-            }
-        }
-        let octave = Int(log2f(pitch / frequency))
-        data.noteNameWithSharps = "\(noteNamesWithSharps[index])\(octave)"
-        data.noteNameWithFlats = "\(noteNamesWithFlats[index])\(octave)"*/
+         for possibleIndex in 0 ..< noteFrequencies.count {
+         let distance = fabsf(Float(noteFrequencies[possibleIndex]) - frequency)
+         if distance < minDistance {
+         index = possibleIndex
+         minDistance = distance
+         }
+         }
+         let octave = Int(log2f(pitch / frequency))
+         data.noteNameWithSharps = "\(noteNamesWithSharps[index])\(octave)"
+         data.noteNameWithFlats = "\(noteNamesWithFlats[index])\(octave)"*/
     }
 }
 
 struct TunerView: View {
-    //@StateObject var conductor = TunerConductor()
+    @StateObject var conductor = TunerConductor()
 
     var body: some View {
         VStack(spacing: 50) {
-          // Text("\(conductor.data.pitch, specifier: "%0.1f")")
-           // Text("\(conductor.data.amplitude, specifier: "%0.1f")")
+            Text("\(conductor.data.pitch, specifier: "%0.1f")")
+            Text("\(conductor.data.amplitude, specifier: "%0.1f")")
+            InputDevicePicker(device: conductor.initialDevice)
             /*HStack {
-                Text("Frequency")
-                Spacer()
-                Text("\(conductor.data.pitch, specifier: "%0.1f")")
-            }.padding()
+             Text("Frequency")
+             Spacer()
+             Text("\(conductor.data.pitch, specifier: "%0.1f")")
+             }.padding()
 
-            HStack {
-                Text("Amplitude")
-                Spacer()
-                Text("\(conductor.data.amplitude, specifier: "%0.1f")")
-            }.padding()
+             HStack {
+             Text("Amplitude")
+             Spacer()
+             Text("\(conductor.data.amplitude, specifier: "%0.1f")")
+             }.padding()
 
-            HStack {
-                Text("Note Name")
-                Spacer()
-                Text("\(conductor.data.noteNameWithSharps) / \(conductor.data.noteNameWithFlats)")
-            }.padding()*/
-
-            //InputDevicePicker(device: conductor.initialDevice)
-
-           // NodeRollingView(conductor.tappableNodeA).clipped()
-
-            //NodeOutputView(conductor.tappableNodeB).clipped()
-
-            //NodeFFTView(conductor.tappableNodeC).clipped()
+             HStack {
+             Text("Note Name")
+             Spacer()
+             Text("\(conductor.data.noteNameWithSharps) / \(conductor.data.noteNameWithFlats)")
+             }.padding()*/
         }
         //.cookbookNavBarTitle("Tuner")
         .onAppear {
-            //conductor.start()
+            conductor.start()
+            //conductor.tracker.start()
         }
         .onDisappear {
-           // conductor.stop()
+            conductor.stop()
         }
         .frame(
-              maxWidth: .infinity,
-              maxHeight: .infinity,
-              alignment: .center
-            )
+            maxWidth: .infinity,
+            maxHeight: .infinity,
+            alignment: .center
+        )
         //.background(conductor.isPink ? .pink : .blue)
         .background(.blue)
 
@@ -206,6 +205,7 @@ struct InputDevicePicker: View {
         }
         .pickerStyle(MenuPickerStyle())
         .onChange(of: device, perform: setInputDevice)
+        .background(.red)
     }
 
     func getDevices() -> [Device] {

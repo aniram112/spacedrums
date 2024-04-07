@@ -4,7 +4,7 @@ import SwiftUI
 struct SoundViewModel {
     let file: AudioFileModel
     let volume: Int
-    let isActive: Bool
+    var isActive: Bool
     let pitch: Double
 }
 
@@ -60,6 +60,18 @@ struct SoundView: View {
         return button(
             text: text,
             action: action,
+            width: 100,
+            height: 40,
+            radius: 20,
+            blendMode: model.isActive ? .plusLighter : .sourceAtop,
+            background: .white.opacity(0.2)
+        )
+    }
+
+    func soundNavigationButton(text: String, destination: some View) -> some View{
+        return navigationButton(
+            text: text,
+            destination: destination,
             width: 100,
             height: 40,
             radius: 20,
