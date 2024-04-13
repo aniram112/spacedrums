@@ -4,6 +4,8 @@ import SwiftUI
 struct MainView:  View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var router: Router
+    @State private var showingAlert = false
+    @State private var name = ""
     //var delegate: SpaceDelegate?
 
     var mock = [
@@ -48,10 +50,16 @@ struct MainView:  View {
                         .foregroundColor(.white)
                         .fixedSize()
                 }//.frame(maxWidth: .infinity, alignment: .leading)
-                Text("Save")
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(.white)
-                    .fixedSize()
+                Button(action: { showingAlert.toggle() }){
+                    Text("Save")
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundColor(.white)
+                        .fixedSize()
+                }.alert("Enter space name", isPresented: $showingAlert) {
+                    TextField("New space", text: $name)
+                    Button("Save", action: {})
+                    Button("Cancel", role: .cancel) { }
+                }
                     //.frame(maxWidth: .infinity, alignment: .center)
                // button(text: "Save", action: {}).frame(maxWidth: .infinity, alignment: .trailing)
             }.frame(maxWidth: .infinity, alignment: .leading)

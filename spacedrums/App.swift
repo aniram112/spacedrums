@@ -5,7 +5,8 @@ import SwiftUI
 struct DrumsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().preferredColorScheme(.light)
+            //TunerView()
         }
     }
 }

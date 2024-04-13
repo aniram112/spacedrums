@@ -54,7 +54,7 @@ class TunerConductor: ObservableObject, HasAudioEngine {
         mixer.addInput(instrument)
         engine.output = mixer
 
-        guard let url = Bundle.main.url(forResource: "cheeb-snr", withExtension: "wav") else {
+        guard let url = Bundle.main.url(forResource: "Drums/cheeb-snr", withExtension: "wav") else {
             fatalError("\"cheeb-snr.wav\" file not found.")
         }
         do {

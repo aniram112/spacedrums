@@ -31,14 +31,35 @@ extension AudioFileModel {
         return AudioFileModel(name: "mockmock", file: .mp3, icon: "mock")
     }
 
-    static var collection = [
-        "Mock" : [AudioFileModel.mock,
-                  AudioFileModel.mock2,
-                  AudioFileModel.mock,
-                  AudioFileModel.mock,
-                  AudioFileModel.mock],
-        "Mock two" : [AudioFileModel.mock]
+    static var kick: AudioFileModel {
+        return AudioFileModel(name: "Drums/kick", file: .wav, icon: "kick")
+    }
 
+    static var snare: AudioFileModel {
+        return AudioFileModel(name: "Drums/snare", file: .wav, icon: "snare")
+    }
+
+    static var snare2: AudioFileModel {
+        return AudioFileModel(name: "Drums/snare-2", file: .wav, icon: "snare")
+    }
+
+    static var hat: AudioFileModel {
+        return AudioFileModel(name: "Drums/hi-hat", file: .wav, icon:  "hi-hat")
+    }
+
+    static var cymbal: AudioFileModel {
+        return AudioFileModel(name: "Drums/cymbal", file: .wav, icon: "hi-hat")
+    }
+
+    static var clap: AudioFileModel {
+        return AudioFileModel(name: "Drums/clap", file: .wav, icon: "clap")
+    }
+
+    static var collection = [
+        "Drums" : [AudioFileModel.kick, AudioFileModel.snare,
+                   AudioFileModel.hat, AudioFileModel.clap,
+                   AudioFileModel.cymbal, AudioFileModel.snare2],
+        "Mock two" : [AudioFileModel.mock, AudioFileModel.mock2 ]
     ]
 
 }

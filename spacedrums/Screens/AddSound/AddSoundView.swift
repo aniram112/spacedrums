@@ -28,7 +28,9 @@ struct AddSoundView: View {
             case .detected:
                 detected.padding(.top, 130)
             }
-        }.navigationTitle("")
+        }
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     var listening: some View {
@@ -38,7 +40,7 @@ struct AddSoundView: View {
                 .font(.system(size: 40, weight: .semibold))
                 .multilineTextAlignment(.center)
             LottieView(animation: LottieAnimation.named("sound-wave"))
-            .looping()
+                .looping()
             //.opacity(0.3)
             //.blendMode(.plusLighter)
 
@@ -103,8 +105,8 @@ struct regular: ViewModifier {
 }
 
 /*struct AddSoundView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddSoundView(mode: .listening)
-        AddSoundView(mode: .detected)
-    }
-}*/
+ static var previews: some View {
+ AddSoundView(mode: .listening)
+ AddSoundView(mode: .detected)
+ }
+ }*/

@@ -2,21 +2,15 @@ import SwiftUI
 import AVFoundation
 
 struct CollectionView: View {
-    //let data = (1...100).map { "Item \($0)" }
-    var data = (1...28).map { AudioFileModel(name: "\($0)", file: .mp3, icon: "mock") }
-    @Environment(\.presentationMode) var presentationMode
-    //@State var data = AudioFileModel.collection["Mock"]
-    var categoriesArray = Array(AudioFileModel.collection.keys.sorted())
-    let columns = [GridItem(.adaptive(minimum: 70))]
-    var action: (_ file: AudioFileModel) -> Void = {file in }
+    //@Environment(\.presentationMode) var presentationMode
+
+    @State var data = AudioFileModel.collection["Drums"]
     @State var selectedFile: AudioFileModel?
-    /*@State var audioSource =  AudioSource(
-        audio:  .kick,
-        point: CGPoint(
-            x: 0.5,
-            y: 0.5
-        )
-    )*/
+    let categoriesArray = Array(AudioFileModel.collection.keys.sorted())
+    let columns = [GridItem(.adaptive(minimum: 70))]
+    //let action: (_ file: AudioFileModel) -> Void = {file in }
+
+    @StateObject var player = CollectionViewPlayer()
 
     var body: some View {
         VStack(spacing: 20){
@@ -30,7 +24,14 @@ struct CollectionView: View {
             }
         }
         .background(ImageResources.background.resizable().scaledToFill().edgesIgnoringSafeArea(.all))
-        .navigationBarTitleDisplayMode(.inline)    }
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            player.start()
+        }
+        .onDisappear {
+            player.stop()
+        }
+    }
 
 
     var categories: some View {
@@ -48,7 +49,7 @@ struct CollectionView: View {
             .font(.system(size: 20, weight: .bold))
             .foregroundColor(.white)
             .onTapGesture {
-                //self.data = AudioFileModel.collection[name]
+                self.data = AudioFileModel.collection[name]
             }
     }
 
@@ -65,21 +66,8 @@ struct CollectionView: View {
     }
 
     private func playSound() {
-        /*guard let selectedFile else { return }
-        self.audioSource = AudioSource(
-            audio: selectedFile,
-            point: CGPoint(
-                x: 0.5,
-                y: 0.5
-            )
-        )
-        self.audioSource.runAudio()
-
-        let timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { timer in
-            print("Timer fired!")
-            self.audioSource.stopAudio()
-        }*/
-
+        guard let selectedFile else { return }
+        player.play(file: selectedFile)
     }
 
     private func addSound(file: AudioFileModel?) {
