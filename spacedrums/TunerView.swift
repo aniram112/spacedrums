@@ -54,7 +54,7 @@ class TunerConductor: ObservableObject, HasAudioEngine {
         mixer.addInput(instrument)
         engine.output = mixer
 
-        guard let url = Bundle.main.url(forResource: "Drums/cheeb-snr", withExtension: "wav") else {
+        guard let url = Bundle.main.url(forResource: "Drums/snare-2", withExtension: "wav") else {
             fatalError("\"cheeb-snr.wav\" file not found.")
         }
         do {
@@ -149,7 +149,8 @@ class TunerConductor: ObservableObject, HasAudioEngine {
 }
 
 struct TunerView: View {
-    @StateObject var conductor = TunerConductor()
+    //@StateObject var conductor = TunerConductor()
+   @StateObject var conductor = PitchDetector()
 
     var body: some View {
         VStack(spacing: 50) {
@@ -177,6 +178,7 @@ struct TunerView: View {
         //.cookbookNavBarTitle("Tuner")
         .onAppear {
             conductor.start()
+            conductor.startDetection{ _ in }
             //conductor.tracker.start()
         }
         .onDisappear {

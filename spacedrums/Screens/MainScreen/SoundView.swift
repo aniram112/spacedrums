@@ -1,11 +1,11 @@
 import Foundation
 import SwiftUI
 
-struct SoundViewModel {
+struct SoundViewModel: Hashable {
     let file: AudioFileModel
     let volume: Int
     var isActive: Bool
-    let pitch: Double
+    let pitch: Int
 }
 
 struct SoundView: View {
@@ -27,14 +27,14 @@ struct SoundView: View {
 
                 Spacer(minLength: 20)
                 VStack(alignment: .leading){
-                    Text("пупупу")
+                    Text(getDisplayName(model.file.name))
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(model.isActive ? .white : .gray)
-                    Text("volume: пупупу")
+                    Text("volume: \(model.volume)")
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(model.isActive ? .white : .gray)
                     HStack {
-                        soundButton(text: "Change", action: {router.routeTo(.collection)})
+                        soundButton(text: "Change", action: {router.routeTo(.collection(sound: model))})
                         soundButton(text: model.isActive ? "Mute": "Unmute", action: {})
                     }
 
@@ -51,7 +51,7 @@ struct SoundView: View {
                 .stroke(model.isActive ? .white : .gray, lineWidth: 3)
                 .frame(width:90, height: 90)
                 .foregroundColor(.clear)
-            Text("440Hz")
+            Text("\(model.pitch)Hz")
                 .font(.system(size: 20, weight: .semibold))
                 .foregroundColor(model.isActive ? .white : .gray)
         }
@@ -67,9 +67,6 @@ struct SoundView: View {
             blendMode: model.isActive ? .plusLighter : .sourceAtop,
             background: .white.opacity(0.2)
         )
-    }
-    func getDisplayName(_ name: String) -> String {
-        return String(name.split(separator: "/").last ?? "file")
     }
 }
 

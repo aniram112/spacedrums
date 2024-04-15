@@ -7,8 +7,8 @@ class Router: ObservableObject {
     enum Route: Hashable {
         case main
         case saved
-        case collection
-        case addSound(mode: AddSoundMode)
+        case collection(sound: SoundViewModel)
+        case addSound(mode: AddSoundMode, pitch: Int)
     }
 
     // Used to programatically control our navigation stack
@@ -21,10 +21,10 @@ class Router: ObservableObject {
             MainView()
         case .saved:
             SavedView()
-        case .collection:
-           CollectionView()
-        case .addSound(let mode):
-            AddSoundView(mode: mode)
+        case .collection(let sound):
+            CollectionView(currentSound: sound)
+        case .addSound(let mode, let pitch):
+            AddSoundView(mode: mode, pitch: pitch)
         }
     }
 
@@ -46,6 +46,8 @@ class Router: ObservableObject {
 
 struct RouterView<Content: View>: View {
     @StateObject var router: Router = Router()
+    @StateObject var soundSpace = SoundSpaceModel()
+
     private let content: Content
 
     init(@ViewBuilder content: @escaping () -> Content) {
@@ -61,6 +63,7 @@ struct RouterView<Content: View>: View {
         }.accentColor(.white)
         .toolbarBackground(Color.pink, for: .navigationBar)
         .environmentObject(router)
+        .environmentObject(soundSpace)
 
         //.navigationBarHidden(true)
     }
@@ -70,6 +73,8 @@ struct ContentView: View {
     var body: some View {
         RouterView {
             MainView()
+            //AddSoundView(mode: .listening, pitch: 0)
+            //CollectionView(currentSound: .init(file: .mock, volume: 80, isActive: true, pitch: 220))
         }
     }
 }

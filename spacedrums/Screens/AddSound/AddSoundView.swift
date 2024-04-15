@@ -11,8 +11,10 @@ struct AddSoundView: View {
     @EnvironmentObject var router: Router
     @Environment(\.dismiss) var dismiss
 
-    init(mode: AddSoundMode) {
+
+    init(mode: AddSoundMode, pitch: Int) {
         self.mode = mode
+        self.pitch = pitch
     }
     //@Environment(\.presentationMode) var presentationMode =
 
@@ -44,10 +46,10 @@ struct AddSoundView: View {
             //.opacity(0.3)
             //.blendMode(.plusLighter)
 
-
-
-            Text(pitch).modifier(regular()).padding(.bottom, 20)
+            //Text("\(pitch)Hz").modifier(regular()).padding(.bottom, 20)
             Text("Analyzing the pitсh...").modifier(regular())
+        }.onAppear {
+            listen()
         }
     }
 
@@ -60,8 +62,8 @@ struct AddSoundView: View {
             frequency.padding(.bottom, 80)
             Text("Use it?").foregroundColor(.white).modifier(regular()).padding(.bottom, 50)
             HStack(alignment: .center, spacing: 40) {
-                button(text: "Add", action: {router.routeTo(.main)})
-                button(text: "Try again", action: {dismiss()})
+                button(text: "Add", action: usePitch)
+                button(text: "Try again", action: tryAgain)
             }
 
         }
@@ -76,15 +78,33 @@ struct AddSoundView: View {
                 .frame(width: 350, height: 160)
                 .fixedSize()
                 .cornerRadius(20)
-            Text(pitch)
+            Text("\(pitch)Hz")
                 .foregroundColor(.white)
                 .font(.system(size: 80, weight: .semibold))
 
         }
     }
 
+    func listen() {
+        let detector = PitchDetector()
+        detector.start()
+        detector.startDetection { p in
+            router.routeTo(.addSound(mode: .detected, pitch: p))
+        }
+    }
+
+    func usePitch(){
+        print("yeet \(pitch)")
+        router.routeTo(.collection(sound: SoundViewModel(file: .mock, volume: 80, isActive: true, pitch: pitch)))
+    }
+
+    func tryAgain(){
+        //router.routeBack() // ui bag
+        router.routeTo(.addSound(mode: .listening, pitch: pitch))
+    }
+
     private let mode: AddSoundMode
-    private let pitch: String = "440Hz"
+    private let pitch: Int
 
 }
 
@@ -97,11 +117,11 @@ struct regular: ViewModifier {
 }
 
 #Preview("listening"){
-    AddSoundView(mode: .listening)
+    AddSoundView(mode: .listening, pitch: 0)
 }
 
 #Preview("detected"){
-    AddSoundView(mode: .detected)
+    AddSoundView(mode: .detected, pitch: 0)
 }
 
 /*struct AddSoundView_Previews: PreviewProvider {

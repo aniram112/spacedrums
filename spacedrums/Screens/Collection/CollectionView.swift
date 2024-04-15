@@ -2,15 +2,17 @@ import SwiftUI
 import AVFoundation
 
 struct CollectionView: View {
-    //@Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var router: Router
+    @EnvironmentObject var soundSpace: SoundSpaceModel
 
     @State var data = AudioFileModel.collection["Drums"]
     @State var selectedFile: AudioFileModel?
+    
     let categoriesArray = Array(AudioFileModel.collection.keys.sorted())
     let columns = [GridItem(.adaptive(minimum: 70))]
-    //let action: (_ file: AudioFileModel) -> Void = {file in }
+    let currentSound: SoundViewModel
 
-    @StateObject var player = CollectionViewPlayer()
+    var player = CollectionViewPlayer()
 
     var body: some View {
         VStack(spacing: 20){
@@ -26,7 +28,8 @@ struct CollectionView: View {
         .background(ImageResources.background.resizable().scaledToFill().edgesIgnoringSafeArea(.all))
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            player.start()
+            //player.start()
+            player.setup()
         }
         .onDisappear {
             player.stop()
@@ -71,33 +74,25 @@ struct CollectionView: View {
     }
 
     private func addSound(file: AudioFileModel?) {
-        /*guard let file else {return}
-        action(file)
+        guard let file else {return}
+        let newSound = SoundViewModel(
+            file: file,
+            volume: currentSound.volume,
+            isActive: currentSound.isActive,
+            pitch: currentSound.pitch
+        )
+        soundSpace.addSound(sound: newSound)
+        router.routeTo(.main)
+
+        /*action(file)
         self.audioSource.stopAudio()
         self.presentationMode.wrappedValue.dismiss()*/
     }
 
 }
 
-struct ScaleButtonStyle: ButtonStyle {
-
-    public init(scaleEffect: CGFloat = 0.96, duration: Double = 0.15) {
-        self.scaleEffect = scaleEffect
-        self.duration = duration
-    }
-
-    public func makeBody(configuration: Self.Configuration) -> some View {
-        return configuration.label
-            .scaleEffect(configuration.isPressed ? scaleEffect : 1)
-            .animation(.easeInOut(duration: duration), value: configuration.isPressed)
-    }
-
-    private let scaleEffect: CGFloat
-    private let duration: Double
-}
-
 struct CollectionView_Previews: PreviewProvider {
     static var previews: some View {
-        CollectionView()
+        CollectionView(currentSound: SoundViewModel(file: .mock, volume: 80, isActive: true, pitch: 440))
     }
 }

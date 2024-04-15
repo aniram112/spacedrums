@@ -30,8 +30,4 @@ struct CollectionCellView: View {
             selectedCell = file
         }
     }
-
-    func getDisplayName(_ name: String) -> String {
-        return String(name.split(separator: "/").last ?? "file")
-    }
 }

@@ -6,8 +6,12 @@ class CollectionViewPlayer: ObservableObject, HasAudioEngine  {
     let engine = AudioEngine()
     let player = AudioPlayer()
 
-    init() {
+    func setup() {
         engine.output = player
+        try? Settings.session.setActive(false, options: .notifyOthersOnDeactivation)
+        try? Settings.setSession(category: .playback, with: [.allowBluetooth])
+        try? Settings.session.setActive(true, options: .notifyOthersOnDeactivation)
+        //try? engine.start()
     }
 
     func loadFile(file: AudioFileModel) {
@@ -23,7 +27,11 @@ class CollectionViewPlayer: ObservableObject, HasAudioEngine  {
     }
 
     func play(file: AudioFileModel) {
+        try? engine.start()
         loadFile(file: file)
         player.play()
+        /*for d in AudioEngine.outputDevices {
+            print("\(d.name) \(d.debugDescription)")
+        }*/
     }
 }

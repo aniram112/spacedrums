@@ -76,7 +76,6 @@ struct SavedView: View {
         }
         .listRowBackground(Color.clear)
         .listRowSeparator(.hidden)
-        //.background(NavigationLink("", destination: MainView()).opacity(0))
         .onTapGesture {
             openSpace(model.sources)
 
