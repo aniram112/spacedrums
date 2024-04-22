@@ -5,6 +5,8 @@ struct CollectionView: View {
     @EnvironmentObject var router: Router
     @EnvironmentObject var soundSpace: SoundSpaceModel
 
+    typealias Strings = StringResources.Collection
+
     @State var data = AudioFileModel.collection["Drums"]
     @State var selectedFile: AudioFileModel?
     
@@ -21,8 +23,8 @@ struct CollectionView: View {
                 .padding(.horizontal,20)
             grid
             HStack(alignment: .center, spacing: 40) {
-                button(text: "Add", action: {addSound(file: selectedFile)})
-                button(text: "Try", action: {playSound()})
+                button(text: Strings.add, action: {addSound(file: selectedFile)})
+                button(text: Strings.trySound, action: {playSound()})
             }
         }
         .background(ImageResources.background.resizable().scaledToFill().edgesIgnoringSafeArea(.all))

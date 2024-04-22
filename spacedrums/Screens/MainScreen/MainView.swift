@@ -6,18 +6,16 @@ struct MainView: View {
     @EnvironmentObject var router: Router
     @State private var showingAlert = false
     @State private var name = ""
-    var conductor = MainConductor()
+    @StateObject var conductor = MainConductor()
     @State var inTrackerOn = true
 
+    typealias Strings = StringResources.Main
     //var delegate: SpaceDelegate?
 
-    /*var mock = [
-        SoundViewModel(file: .mock, volume: 80, isActive: true, pitch: 440.0),
-        SoundViewModel(file: .mock2, volume: 80, isActive: false, pitch: 440.0),
-        SoundViewModel(file: .mock, volume: 80, isActive: true, pitch: 440.0),
-        SoundViewModel(file: .mock, volume: 80, isActive: true, pitch: 440.0),
-        SoundViewModel(file: .mock, volume: 80, isActive: true, pitch: 440.0)
-    ]*/
+    var mock = [
+        SoundViewModel(file: .kick, volume: 80, isActive: true, pitch: 440),
+        SoundViewModel(file: .clap, volume: 70, isActive: false, pitch: 220),
+    ]
 
     //@State var data: [SoundViewModel] = []
 
@@ -32,7 +30,7 @@ struct MainView: View {
             } else {
                 List{
                     ForEach(soundSpace.data, id: \.file.name) { item in
-                        SoundView(model: item)
+                        SoundView(model: item, muteButton: soundSpace.muteSound)
                             .padding(.bottom, 20)
                             .swipeActions(edge: .trailing) {
                                 Button(role: .destructive) {
@@ -43,17 +41,21 @@ struct MainView: View {
                             }
                     }
                 }
+                .onChange(of: inTrackerOn) { newValue in
+                    if newValue {
+                        conductor.resume()
+                    } else {
+                        conductor.pause()
+                    }
+                }
+                .onChange(of: soundSpace.data){ newValue in
+                    conductor.loadSounds(models: soundSpace.data)
+                }
                 .onAppear {
                     if !soundSpace.data.isEmpty {
                         conductor.setup()
                         conductor.loadSounds(models: soundSpace.data)
-                        //conductor.resume()
-                        //print("yview appeared")
                     }
-                }
-                .onDisappear {
-                    //conductor.pause()
-                    //print("yview disappeared")
                 }
                 .listStyle(.plain)
             }
@@ -68,33 +70,20 @@ struct MainView: View {
         HStack {
             HStack(spacing: 20){
                 Button(action: saveSpace){
-                    Text("Open")
+                    Text(Strings.open)
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(.white)
                         .fixedSize()
                 }//.frame(maxWidth: .infinity, alignment: .leading)
                 Button(action: { showingAlert.toggle() }){
-                    Text("Save")
+                    Text(Strings.save)
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(.white)
                         .fixedSize()
-                }.alert("Enter space name", isPresented: $showingAlert) {
-                    TextField("New space", text: $name)
-                    Button("Save", action: {})
-                    Button("Cancel", role: .cancel) { }
-                }
-
-                Toggle(isOn: $inTrackerOn, label: {
-                    Text("isOn")
-                })
-                .padding(.horizontal)
-                .toggleStyle(SwitchToggleStyle(tint: .green))
-                .onChange(of: inTrackerOn) { newValue in
-                    if newValue {
-                        conductor.resume()
-                    } else {
-                        conductor.pause()
-                    }
+                }.alert(Strings.Alert.title, isPresented: $showingAlert) {
+                    TextField(Strings.Alert.placeholder, text: $name)
+                    Button(Strings.Alert.save, action: {})
+                    Button(Strings.Alert.cancel, role: .cancel) { }
                 }
             }.frame(maxWidth: .infinity, alignment: .leading)
             Button(action: addSound){
@@ -110,7 +99,7 @@ struct MainView: View {
     // TODO
     var emptyView: some View {
         button(
-            text: "Start",
+            text: Strings.start,
             action: addSound,
             width: 240,
             height: 110,
@@ -135,6 +124,10 @@ struct MainView: View {
     }
 
     func delete(item: SoundViewModel) {
+        soundSpace.data.removeAll(where: {$0.pitch == item.pitch})
+        conductor.loadSounds(models: soundSpace.data)
+        print("deleted")
+        print(soundSpace.data.count)
         //SavedData.shared.spaces.removeAll(where: {$0.name == item.name})
         //SavedData.saveData()
     }

@@ -73,7 +73,7 @@ struct ContentView: View {
     var body: some View {
         RouterView {
             MainView()
-            //AddSoundView(mode: .listening, pitch: 0)
+            //AddSoundView(mode: .detected, pitch: 220)
             //CollectionView(currentSound: .init(file: .mock, volume: 80, isActive: true, pitch: 220))
         }
     }

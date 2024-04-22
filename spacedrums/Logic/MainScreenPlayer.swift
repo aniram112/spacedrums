@@ -36,11 +36,7 @@ class MainConductor: ObservableObject, HasAudioEngine {
     var tracker: PitchTap?
     var silence: Fader?
 
-    let musicEngine = AudioEngine()
     var instrument = AppleSampler()
-
-
-    let player = AudioPlayer()
     let mixer = Mixer()
 
     var sounds: [SoundSample] = []
@@ -66,11 +62,14 @@ class MainConductor: ObservableObject, HasAudioEngine {
         silence = Fader(microphone, gain: 0)
 
         resume()
+    }
 
+    init() {
+        print(" init")
     }
 
     deinit {
-        print("main player deinit")
+        print(" deinit")
     }
 
     func update(_ pitch: AUValue, _ amp: AUValue) {
@@ -78,7 +77,8 @@ class MainConductor: ObservableObject, HasAudioEngine {
         //print("yeet \(pitch)")
         if amp > 0.1 {
             guard !sounds.isEmpty else { return }
-            instrument.play(noteNumber: MIDINoteNumber(getClosestSound().midiNote))
+            guard let sound = getClosestSound(Int(pitch)) else { return }
+            instrument.play(noteNumber: MIDINoteNumber(sound.midiNote))
             //print("yeet should play note")
         }
 
@@ -88,7 +88,10 @@ class MainConductor: ObservableObject, HasAudioEngine {
     }
 
     func loadSounds(models: [SoundViewModel]) {
-        guard !models.isEmpty else { return }
+        guard !models.isEmpty else { 
+            sounds = []
+            return
+        }
         sounds = models.compactMap { SoundSample($0,note: $0.file.note)}
         do {
             let files = sounds.map {
@@ -103,7 +106,7 @@ class MainConductor: ObservableObject, HasAudioEngine {
     
     func resume(){
         try? engine.start()
-        //print("resume")
+        print("resume")
         guard let microphone = mic else { return }
         trackerRunning = true
         tracker = PitchTap(microphone) { [weak self] pitch, amp in
@@ -118,14 +121,18 @@ class MainConductor: ObservableObject, HasAudioEngine {
     }
 
     func pause() {
-        //print("pause")
+        print("pause")
         instrument.stop()
         instrument.volume = 0
         tracker?.stop()
         engine.stop()
     }
 
-    func getClosestSound() -> SoundSample {
-        return sounds[0]
+    func getClosestSound(_ pitch: Int) -> SoundSample? {
+        let values = sounds
+        let match = values.reduce(values[0]) { abs($0.sound.pitch-pitch) < abs($1.sound.pitch-pitch) ? $0 : $1 }
+        let index = values.firstIndex(where: {$0.sound.pitch == match.sound.pitch}) ?? 0
+        return sounds[index].sound.isActive ? sounds[index] : nil
+        //return sounds[index]
     }
 }

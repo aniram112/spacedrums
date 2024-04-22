@@ -11,4 +11,9 @@ class SoundSpaceModel: ObservableObject {
            data.append(sound)
         }
     }
+
+    func muteSound(sound: SoundViewModel) {
+        guard let ind = data.firstIndex(of: sound) else { return }
+        data[ind].isActive.toggle()
+    }
 }

@@ -11,6 +11,7 @@ struct AddSoundView: View {
     @EnvironmentObject var router: Router
     @Environment(\.dismiss) var dismiss
 
+    typealias Strings = StringResources.AddSound
 
     init(mode: AddSoundMode, pitch: Int) {
         self.mode = mode
@@ -37,7 +38,7 @@ struct AddSoundView: View {
 
     var listening: some View {
         VStack {
-            Text("Play the sound a few times")
+            Text(Strings.Listening.topText)
                 .foregroundColor(.white)
                 .font(.system(size: 40, weight: .semibold))
                 .multilineTextAlignment(.center)
@@ -47,7 +48,7 @@ struct AddSoundView: View {
             //.blendMode(.plusLighter)
 
             //Text("\(pitch)Hz").modifier(regular()).padding(.bottom, 20)
-            Text("Analyzing the pitсh...").modifier(regular())
+            Text(Strings.Listening.bottomText).modifier(regular())
         }.onAppear {
             listen()
         }
@@ -55,15 +56,16 @@ struct AddSoundView: View {
 
     var detected: some View {
         VStack {
-            Text("Found frequency")
+            Text(Strings.Detected.topText)
                 .foregroundColor(.white)
                 .font(.system(size: 40, weight: .semibold))
                 .padding(.bottom, 80)
+                .multilineTextAlignment(.center)
             frequency.padding(.bottom, 80)
-            Text("Use it?").foregroundColor(.white).modifier(regular()).padding(.bottom, 50)
+            Text(Strings.Detected.bottomText).foregroundColor(.white).modifier(regular()).padding(.bottom, 50)
             HStack(alignment: .center, spacing: 40) {
-                button(text: "Add", action: usePitch)
-                button(text: "Try again", action: tryAgain)
+                button(text: Strings.Detected.add, action: usePitch)
+                button(text: Strings.Detected.again, action: tryAgain)
             }
 
         }
@@ -78,7 +80,7 @@ struct AddSoundView: View {
                 .frame(width: 350, height: 160)
                 .fixedSize()
                 .cornerRadius(20)
-            Text("\(pitch)Hz")
+            Text(String(format: Strings.Detected.frequency, pitch))
                 .foregroundColor(.white)
                 .font(.system(size: 80, weight: .semibold))
 
@@ -117,11 +119,11 @@ struct regular: ViewModifier {
 }
 
 #Preview("listening"){
-    AddSoundView(mode: .listening, pitch: 0)
+    AddSoundView(mode: .listening, pitch: 220)
 }
 
 #Preview("detected"){
-    AddSoundView(mode: .detected, pitch: 0)
+    AddSoundView(mode: .detected, pitch: 220)
 }
 
 /*struct AddSoundView_Previews: PreviewProvider {

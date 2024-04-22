@@ -10,7 +10,11 @@ struct SoundViewModel: Hashable {
 
 struct SoundView: View {
     @EnvironmentObject var router: Router
+
+    typealias Strings = StringResources.Main.SoundView
+
     var model: SoundViewModel
+    var muteButton: (SoundViewModel) -> Void
     var body: some View {
         ZStack{
             Rectangle()
@@ -30,12 +34,12 @@ struct SoundView: View {
                     Text(getDisplayName(model.file.name))
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(model.isActive ? .white : .gray)
-                    Text("volume: \(model.volume)")
+                    Text(String(format: Strings.volume, model.volume))
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(model.isActive ? .white : .gray)
                     HStack {
-                        soundButton(text: "Change", action: {router.routeTo(.collection(sound: model))})
-                        soundButton(text: model.isActive ? "Mute": "Unmute", action: {})
+                        soundButton(text: Strings.change, action: { router.routeTo(.collection(sound: model)) })
+                        soundButton(text: model.isActive ? Strings.mute : Strings.unmute, action: { muteButton(model) })
                     }
 
                 }
@@ -51,7 +55,7 @@ struct SoundView: View {
                 .stroke(model.isActive ? .white : .gray, lineWidth: 3)
                 .frame(width:90, height: 90)
                 .foregroundColor(.clear)
-            Text("\(model.pitch)Hz")
+            Text(String(format: Strings.circle, model.pitch))
                 .font(.system(size: 20, weight: .semibold))
                 .foregroundColor(model.isActive ? .white : .gray)
         }
@@ -65,7 +69,8 @@ struct SoundView: View {
             height: 40,
             radius: 20,
             blendMode: model.isActive ? .plusLighter : .sourceAtop,
-            background: .white.opacity(0.2)
+            background: .white.opacity(0.2),
+            fontSize: 16
         )
     }
 }

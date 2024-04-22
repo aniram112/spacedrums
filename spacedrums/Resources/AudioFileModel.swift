@@ -71,12 +71,11 @@ extension AudioFileModel {
                    AudioFileModel.hat, AudioFileModel.clap,
                    AudioFileModel.openHat, AudioFileModel.hiTom,
                    AudioFileModel.midTom, AudioFileModel.loTom],
-        "Mock two" : [AudioFileModel.mock, AudioFileModel.mock2]
+        "Mock" : [AudioFileModel.mock, AudioFileModel.mock2]
     ]
 }
 
 func getDisplayName(_ name: String) -> String {
     let sound = String(name.split(separator: "/").last ?? "file")
     return sound.split(separator: "_").dropLast().joined(separator: " ")
-
 }
