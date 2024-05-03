@@ -21,13 +21,13 @@ struct CollectionView: View {
             categories
                 //.padding(.top,40)
                 .padding(.horizontal,20)
-            grid
+            grid.accessibilityLabel("Sounds grid")
             HStack(alignment: .center, spacing: 40) {
                 button(text: Strings.add, action: {addSound(file: selectedFile)})
                 button(text: Strings.trySound, action: {playSound()})
             }
         }
-        .background(ImageResources.background.resizable().scaledToFill().edgesIgnoringSafeArea(.all))
+        .background(ImageResources.background.resizable().scaledToFill().edgesIgnoringSafeArea(.all).accessibilityHidden(true))
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             //player.start()
@@ -44,6 +44,8 @@ struct CollectionView: View {
             HStack(spacing: 20){
                 ForEach(categoriesArray, id: \.self) { item in
                     category(name: item)
+                        .accessibilityLabel("Category \(item)")
+                        .accessibilityAddTraits(.isButton)
                 }
             }
         }

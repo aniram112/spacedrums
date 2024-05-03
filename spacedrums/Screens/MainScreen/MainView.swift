@@ -39,7 +39,7 @@ struct MainView: View {
                                     Label("Delete", systemImage: "trash")
                                 }
                             }
-                    }
+                    }.accessibilityElement(children: .contain)
                 }
                 .onChange(of: inTrackerOn) { newValue in
                     if newValue {
@@ -56,12 +56,13 @@ struct MainView: View {
                         conductor.setup()
                         conductor.loadSounds(models: soundSpace.data)
                     }
+                    SavedData.loadData()
                 }
                 .listStyle(.plain)
             }
         }
         //.background(Colors.backgroundGradient)
-        .background(ImageResources.background.resizable().scaledToFill().ignoresSafeArea())
+        .background(ImageResources.background.resizable().scaledToFill().ignoresSafeArea().accessibilityHidden(true))
         .navigationBarHidden(true)
         .navigationTitle("")
     }
@@ -69,7 +70,7 @@ struct MainView: View {
     var navbar: some View {
         HStack {
             HStack(spacing: 20){
-                Button(action: saveSpace){
+                Button(action: openSaved){
                     Text(Strings.open)
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(.white)
@@ -81,8 +82,8 @@ struct MainView: View {
                         .foregroundColor(.white)
                         .fixedSize()
                 }.alert(Strings.Alert.title, isPresented: $showingAlert) {
-                    TextField(Strings.Alert.placeholder, text: $name)
-                    Button(Strings.Alert.save, action: {})
+                    TextField(Strings.Alert.placeholder, text: $name).foregroundColor(.white)
+                    Button(Strings.Alert.save, action: saveSpace)
                     Button(Strings.Alert.cancel, role: .cancel) { }
                 }
             }.frame(maxWidth: .infinity, alignment: .leading)
@@ -96,7 +97,6 @@ struct MainView: View {
 
     }
 
-    // TODO
     var emptyView: some View {
         button(
             text: Strings.start,
@@ -117,10 +117,20 @@ struct MainView: View {
         }*/
     }
 
-    func saveSpace(){
+    func openSaved(){
         inTrackerOn = false
         router.routeTo(.saved)
+    }
 
+    func saveSpace(){
+        let mytime = Date()
+        let format = DateFormatter()
+        format.timeStyle = .short
+        format.dateStyle = .short
+        format.dateFormat = "dd.MM.yyyy HH:mm"
+        let newModel = SavedSpaceModel(name: name, sources: soundSpace.data, date: format.string(from: mytime))
+        SavedData.shared.spaces.append(newModel)
+        SavedData.saveData()
     }
 
     func delete(item: SoundViewModel) {

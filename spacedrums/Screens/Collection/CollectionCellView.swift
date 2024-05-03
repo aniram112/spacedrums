@@ -29,5 +29,7 @@ struct CollectionCellView: View {
         }.onTapGesture {
             selectedCell = file
         }
+        .accessibilityLabel("Sound \(getDisplayName(file.name))")
+        .accessibilityAddTraits(.isButton)
     }
 }

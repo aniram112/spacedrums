@@ -7,7 +7,13 @@
     "%0.1f" : {
 
     },
+    "%lld" : {
+
+    },
     "+" : {
+
+    },
+    "active sound cell" : {
 
     },
     "AddSound.Detected.add" : {
@@ -129,6 +135,9 @@
         }
       }
     },
+    "Category %@" : {
+
+    },
     "Collection.add" : {
       "comment" : "Collection button",
       "localizations" : {
@@ -164,6 +173,12 @@
       }
     },
     "Delete" : {
+
+    },
+    "disabled sound cell" : {
+
+    },
+    "Email" : {
 
     },
     "Input: %@" : {
@@ -373,10 +388,19 @@
         }
       }
     },
+    "Password" : {
+
+    },
     "PLAY" : {
 
     },
     "RECORD" : {
+
+    },
+    "Sound %@" : {
+
+    },
+    "Sounds grid" : {
 
     },
     "STOP" : {

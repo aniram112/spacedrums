@@ -35,7 +35,7 @@ class Router: ObservableObject {
 
     // Used to go back to the previous screen
     func routeBack() {
-            path.removeLast()
+        path.removeLast()
     }
 
     // Pop to the root screen in our hierarchy
@@ -72,9 +72,10 @@ struct RouterView<Content: View>: View {
 struct ContentView: View {
     var body: some View {
         RouterView {
-            MainView()
-            //AddSoundView(mode: .detected, pitch: 220)
-            //CollectionView(currentSound: .init(file: .mock, volume: 80, isActive: true, pitch: 220))
+            //MainView()
+            SavedView()
+            //AddSoundView(mode: .listening, pitch: 220)
+           //CollectionView(currentSound: .init(file: .mock, volume: 80, isActive: true, pitch: 220))
         }
     }
 }

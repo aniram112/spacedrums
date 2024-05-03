@@ -25,6 +25,9 @@ func button
 
     }
     .buttonStyle(ScaleButtonStyle())
+    .accessibilityLabel(text)
+    .accessibilityAddTraits(.isButton)
+
 }
 
 struct ScaleButtonStyle: ButtonStyle {

@@ -79,3 +79,14 @@ func getDisplayName(_ name: String) -> String {
     let sound = String(name.split(separator: "/").last ?? "file")
     return sound.split(separator: "_").dropLast().joined(separator: " ")
 }
+
+func getFile(_ name: String) -> AudioFileModel {
+    for (_, values) in AudioFileModel.collection {
+        for model in values {
+            if model.name == name {
+                return model
+            }
+        }
+    }
+    return .mock
+}

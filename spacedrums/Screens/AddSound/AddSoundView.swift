@@ -25,6 +25,7 @@ struct AddSoundView: View {
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
+                .accessibilityHidden(true)
             switch mode {
             case .listening:
                 listening.padding(.top, 130)
@@ -83,7 +84,6 @@ struct AddSoundView: View {
             Text(String(format: Strings.Detected.frequency, pitch))
                 .foregroundColor(.white)
                 .font(.system(size: 80, weight: .semibold))
-
         }
     }
 

@@ -11,6 +11,11 @@
 		E300D3752BAA3F1A00BF2947 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = E300D3742BAA3F1A00BF2947 /* Images.swift */; };
 		E300D3782BAA442800BF2947 /* SmoothGradient in Frameworks */ = {isa = PBXBuildFile; productRef = E300D3772BAA442800BF2947 /* SmoothGradient */; };
 		E30A0CDF2BB0967000BD2716 /* AudioFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30A0CDE2BB0967000BD2716 /* AudioFileModel.swift */; };
+		E313BD0F2BE420140096D7E1 /* SavedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E313BD0E2BE420140096D7E1 /* SavedData.swift */; };
+		E313BD112BE531EE0096D7E1 /* CloudSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E313BD102BE531EE0096D7E1 /* CloudSheet.swift */; };
+		E313BD142BE558E60096D7E1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E313BD132BE558E60096D7E1 /* FirebaseAuth */; };
+		E313BD162BE558E60096D7E1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E313BD152BE558E60096D7E1 /* FirebaseFirestore */; };
+		E313BD182BE567290096D7E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E313BD172BE567290096D7E1 /* GoogleService-Info.plist */; };
 		E3762C1F2B62A97E000519DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3762C1E2B62A97E000519DE /* Assets.xcassets */; };
 		E3762C222B62A97E000519DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3762C202B62A97E000519DE /* LaunchScreen.storyboard */; };
 		E3762C2A2B62AD43000519DE /* TunerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3762C292B62AD43000519DE /* TunerView.swift */; };
@@ -18,6 +23,8 @@
 		E3762C302B62AE60000519DE /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = E3762C2F2B62AE60000519DE /* AudioKitEX */; };
 		E3762C332B62AE6F000519DE /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = E3762C322B62AE6F000519DE /* AudioKitUI */; };
 		E3762C362B62AE81000519DE /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = E3762C352B62AE81000519DE /* SoundpipeAudioKit */; };
+		E37DB7B52BD45C2A002A328A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E37DB7B42BD45C2A002A328A /* Localizable.xcstrings */; };
+		E37DB7B72BD45C7D002A328A /* StringResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37DB7B62BD45C7D002A328A /* StringResources.swift */; };
 		E3A819722B976942001E5168 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A819712B976942001E5168 /* MainView.swift */; };
 		E3A819742B97694D001E5168 /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A819732B97694D001E5168 /* SoundView.swift */; };
 		E3A819762B976A5C001E5168 /* AddSoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A819752B976A5C001E5168 /* AddSoundView.swift */; };
@@ -29,22 +36,32 @@
 		E3B724492BB86E1A00411ADC /* sound-wave.json in Resources */ = {isa = PBXBuildFile; fileRef = E3B724482BB86E1A00411ADC /* sound-wave.json */; };
 		E3B7244C2BB8B99300411ADC /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7244B2BB8B99300411ADC /* Button.swift */; };
 		E3B7244E2BB9CBE000411ADC /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7244D2BB9CBE000411ADC /* Players.swift */; };
+		E3D4EED02BD95782000D4F0C /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = E3D4EECF2BD95782000D4F0C /* Sliders */; };
+		E3D4EED22BD957AF000D4F0C /* SlidersExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D4EED12BD957AF000D4F0C /* SlidersExample.swift */; };
 		E3DB37A72BC323B8005838ED /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB37A62BC323B8005838ED /* Router.swift */; };
 		E3DB37A92BC339B0005838ED /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB37A82BC339B0005838ED /* App.swift */; };
-		E3FD69272BCA96FA0066352C /* Drums in Resources */ = {isa = PBXBuildFile; fileRef = E3FD69262BCA96FA0066352C /* Drums */; };
 		E3FD692A2BCA9AA20066352C /* CollectionViewPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FD69292BCA9AA20066352C /* CollectionViewPlayer.swift */; };
 		E3FD692C2BCA9AC40066352C /* AddSoundPitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FD692B2BCA9AC40066352C /* AddSoundPitch.swift */; };
+		E3FD692E2BCAD6DE0066352C /* SoundSpaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FD692D2BCAD6DE0066352C /* SoundSpaceModel.swift */; };
+		E3FD69302BCC2F630066352C /* MainScreenPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FD692F2BCC2F630066352C /* MainScreenPlayer.swift */; };
+		E3FD69322BCC529A0066352C /* Drums in Resources */ = {isa = PBXBuildFile; fileRef = E3FD69312BCC529A0066352C /* Drums */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E300D36D2BAA37AA00BF2947 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		E300D3742BAA3F1A00BF2947 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		E30A0CDE2BB0967000BD2716 /* AudioFileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileModel.swift; sourceTree = "<group>"; };
-		E3762C122B62A97C000519DE /* spacedrums.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spacedrums.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E313BD0E2BE420140096D7E1 /* SavedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedData.swift; sourceTree = "<group>"; };
+		E313BD102BE531EE0096D7E1 /* CloudSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSheet.swift; sourceTree = "<group>"; };
+		E313BD172BE567290096D7E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E3762C122B62A97C000519DE /* SpaceDrums.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceDrums.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3762C1E2B62A97E000519DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3762C212B62A97E000519DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3762C232B62A97E000519DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3762C292B62AD43000519DE /* TunerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerView.swift; sourceTree = "<group>"; };
+		E37DB7B22BD45BD1002A328A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		E37DB7B42BD45C2A002A328A /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		E37DB7B62BD45C7D002A328A /* StringResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringResources.swift; sourceTree = "<group>"; };
 		E3A819712B976942001E5168 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E3A819732B97694D001E5168 /* SoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundView.swift; sourceTree = "<group>"; };
 		E3A819752B976A5C001E5168 /* AddSoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSoundView.swift; sourceTree = "<group>"; };
@@ -55,11 +72,14 @@
 		E3B724482BB86E1A00411ADC /* sound-wave.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sound-wave.json"; sourceTree = "<group>"; };
 		E3B7244B2BB8B99300411ADC /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		E3B7244D2BB9CBE000411ADC /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		E3D4EED12BD957AF000D4F0C /* SlidersExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidersExample.swift; sourceTree = "<group>"; };
 		E3DB37A62BC323B8005838ED /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		E3DB37A82BC339B0005838ED /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		E3FD69262BCA96FA0066352C /* Drums */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Drums; sourceTree = "<group>"; };
 		E3FD69292BCA9AA20066352C /* CollectionViewPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewPlayer.swift; sourceTree = "<group>"; };
 		E3FD692B2BCA9AC40066352C /* AddSoundPitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSoundPitch.swift; sourceTree = "<group>"; };
+		E3FD692D2BCAD6DE0066352C /* SoundSpaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSpaceModel.swift; sourceTree = "<group>"; };
+		E3FD692F2BCC2F630066352C /* MainScreenPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPlayer.swift; sourceTree = "<group>"; };
+		E3FD69312BCC529A0066352C /* Drums */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Drums; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +89,13 @@
 			files = (
 				E3762C2D2B62AD53000519DE /* AudioKit in Frameworks */,
 				E3762C332B62AE6F000519DE /* AudioKitUI in Frameworks */,
+				E3D4EED02BD95782000D4F0C /* Sliders in Frameworks */,
 				E300D3782BAA442800BF2947 /* SmoothGradient in Frameworks */,
 				E3762C362B62AE81000519DE /* SoundpipeAudioKit in Frameworks */,
+				E313BD162BE558E60096D7E1 /* FirebaseFirestore in Frameworks */,
 				E3762C302B62AE60000519DE /* AudioKitEX in Frameworks */,
 				E3B724442BB86C3C00411ADC /* Lottie in Frameworks */,
+				E313BD142BE558E60096D7E1 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,9 +118,19 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		E313BD0D2BE41FFB0096D7E1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E3FD692D2BCAD6DE0066352C /* SoundSpaceModel.swift */,
+				E313BD0E2BE420140096D7E1 /* SavedData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		E35380EC2B7927CC000D9152 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E37DB7B32BD45C0F002A328A /* Strings */,
 				E3B724462BB86DEE00411ADC /* LottieAnimations */,
 				E300D3712BAA3EA800BF2947 /* Images */,
 				E300D36C2BAA379C00BF2947 /* Colors */,
@@ -110,7 +143,7 @@
 		E35380F02B79297C000D9152 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				E3FD69262BCA96FA0066352C /* Drums */,
+				E3FD69312BCC529A0066352C /* Drums */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -126,7 +159,7 @@
 		E3762C132B62A97C000519DE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E3762C122B62A97C000519DE /* spacedrums.app */,
+				E3762C122B62A97C000519DE /* SpaceDrums.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,18 +167,30 @@
 		E3762C142B62A97C000519DE /* spacedrums */ = {
 			isa = PBXGroup;
 			children = (
+				E313BD0D2BE41FFB0096D7E1 /* Data */,
 				E3FD69282BCA9A7F0066352C /* Logic */,
 				E3A8196C2B97690C001E5168 /* Screens */,
 				E35380EC2B7927CC000D9152 /* Resources */,
 				E3762C1E2B62A97E000519DE /* Assets.xcassets */,
 				E3762C202B62A97E000519DE /* LaunchScreen.storyboard */,
 				E3762C232B62A97E000519DE /* Info.plist */,
+				E313BD172BE567290096D7E1 /* GoogleService-Info.plist */,
 				E3762C292B62AD43000519DE /* TunerView.swift */,
 				E3AF390C2B6FFE4B00311805 /* Recorder.swift */,
 				E3B7244D2BB9CBE000411ADC /* Players.swift */,
 				E3DB37A82BC339B0005838ED /* App.swift */,
+				E3D4EED12BD957AF000D4F0C /* SlidersExample.swift */,
 			);
 			path = spacedrums;
+			sourceTree = "<group>";
+		};
+		E37DB7B32BD45C0F002A328A /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				E37DB7B42BD45C2A002A328A /* Localizable.xcstrings */,
+				E37DB7B62BD45C7D002A328A /* StringResources.swift */,
+			);
+			path = Strings;
 			sourceTree = "<group>";
 		};
 		E3A8196C2B97690C001E5168 /* Screens */ = {
@@ -182,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				E3A819772B976A67001E5168 /* SavedView.swift */,
+				E313BD102BE531EE0096D7E1 /* CloudSheet.swift */,
 			);
 			path = Saved;
 			sourceTree = "<group>";
@@ -216,6 +262,7 @@
 			children = (
 				E3FD69292BCA9AA20066352C /* CollectionViewPlayer.swift */,
 				E3FD692B2BCA9AC40066352C /* AddSoundPitch.swift */,
+				E3FD692F2BCC2F630066352C /* MainScreenPlayer.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -243,9 +290,12 @@
 				E3762C352B62AE81000519DE /* SoundpipeAudioKit */,
 				E300D3772BAA442800BF2947 /* SmoothGradient */,
 				E3B724432BB86C3C00411ADC /* Lottie */,
+				E3D4EECF2BD95782000D4F0C /* Sliders */,
+				E313BD132BE558E60096D7E1 /* FirebaseAuth */,
+				E313BD152BE558E60096D7E1 /* FirebaseFirestore */,
 			);
 			productName = spacedrums;
-			productReference = E3762C122B62A97C000519DE /* spacedrums.app */;
+			productReference = E3762C122B62A97C000519DE /* SpaceDrums.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -270,6 +320,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = E3762C092B62A97C000519DE;
 			packageReferences = (
@@ -279,6 +330,8 @@
 				E3762C342B62AE81000519DE /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
 				E300D3762BAA442700BF2947 /* XCRemoteSwiftPackageReference "SmoothGradient" */,
 				E3B724422BB86C3C00411ADC /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				E3D4EECE2BD95782000D4F0C /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
+				E313BD122BE558E60096D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = E3762C132B62A97C000519DE /* Products */;
 			projectDirPath = "";
@@ -294,10 +347,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3FD69322BCC529A0066352C /* Drums in Resources */,
+				E37DB7B52BD45C2A002A328A /* Localizable.xcstrings in Resources */,
 				E3B724492BB86E1A00411ADC /* sound-wave.json in Resources */,
 				E3762C222B62A97E000519DE /* LaunchScreen.storyboard in Resources */,
-				E3FD69272BCA96FA0066352C /* Drums in Resources */,
 				E3762C1F2B62A97E000519DE /* Assets.xcassets in Resources */,
+				E313BD182BE567290096D7E1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,8 +364,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E30A0CDF2BB0967000BD2716 /* AudioFileModel.swift in Sources */,
+				E3D4EED22BD957AF000D4F0C /* SlidersExample.swift in Sources */,
 				E3A819722B976942001E5168 /* MainView.swift in Sources */,
 				E3A819762B976A5C001E5168 /* AddSoundView.swift in Sources */,
+				E3FD69302BCC2F630066352C /* MainScreenPlayer.swift in Sources */,
 				E3A819742B97694D001E5168 /* SoundView.swift in Sources */,
 				E3AF390D2B6FFE4B00311805 /* Recorder.swift in Sources */,
 				E300D3752BAA3F1A00BF2947 /* Images.swift in Sources */,
@@ -323,7 +380,11 @@
 				E3B7244C2BB8B99300411ADC /* Button.swift in Sources */,
 				E3A8197C2B976B13001E5168 /* CollectionCellView.swift in Sources */,
 				E3762C2A2B62AD43000519DE /* TunerView.swift in Sources */,
+				E313BD112BE531EE0096D7E1 /* CloudSheet.swift in Sources */,
 				E3FD692C2BCA9AC40066352C /* AddSoundPitch.swift in Sources */,
+				E3FD692E2BCAD6DE0066352C /* SoundSpaceModel.swift in Sources */,
+				E313BD0F2BE420140096D7E1 /* SavedData.swift in Sources */,
+				E37DB7B72BD45C7D002A328A /* StringResources.swift in Sources */,
 				E300D36E2BAA37AA00BF2947 /* Gradient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,6 +396,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E3762C212B62A97E000519DE /* Base */,
+				E37DB7B22BD45BD1002A328A /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -347,6 +409,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -399,6 +462,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = SpaceDrums;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -410,6 +474,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -455,6 +520,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = SpaceDrums;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
@@ -482,7 +548,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = marina.spacedrums;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SpaceDrums;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -510,7 +576,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = marina.spacedrums;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SpaceDrums;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -547,6 +613,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
+			};
+		};
+		E313BD122BE558E60096D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.25.0;
 			};
 		};
 		E3762C2B2B62AD53000519DE /* XCRemoteSwiftPackageReference "AudioKit" */ = {
@@ -589,6 +663,14 @@
 				minimumVersion = 4.4.1;
 			};
 		};
+		E3D4EECE2BD95782000D4F0C /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -596,6 +678,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E300D3762BAA442700BF2947 /* XCRemoteSwiftPackageReference "SmoothGradient" */;
 			productName = SmoothGradient;
+		};
+		E313BD132BE558E60096D7E1 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E313BD122BE558E60096D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		E313BD152BE558E60096D7E1 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E313BD122BE558E60096D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 		E3762C2C2B62AD53000519DE /* AudioKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -621,6 +713,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E3B724422BB86C3C00411ADC /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
+		};
+		E3D4EECF2BD95782000D4F0C /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3D4EECE2BD95782000D4F0C /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
