@@ -3,6 +3,7 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var router: Router
     @State private var showingAlert = false
     @State private var name = ""
@@ -82,7 +83,8 @@ struct MainView: View {
                         .foregroundColor(.white)
                         .fixedSize()
                 }.alert(Strings.Alert.title, isPresented: $showingAlert) {
-                    TextField(Strings.Alert.placeholder, text: $name).foregroundColor(.white)
+                    TextField(Strings.Alert.placeholder, text: $name)
+                        .foregroundColor(Color(red: 0.03, green: 0.4, blue: 0.38))
                     Button(Strings.Alert.save, action: saveSpace)
                     Button(Strings.Alert.cancel, role: .cancel) { }
                 }
@@ -112,9 +114,6 @@ struct MainView: View {
     func addSound() {
         inTrackerOn = false
         router.routeTo(.addSound(mode: .listening, pitch: 0))
-        /*DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            router.routeTo(.addSound(mode: .detected))
-        }*/
     }
 
     func openSaved(){
@@ -128,6 +127,10 @@ struct MainView: View {
         format.timeStyle = .short
         format.dateStyle = .short
         format.dateFormat = "dd.MM.yyyy HH:mm"
+        let count = SavedData.shared.spaces.filter { $0.name.hasPrefix(name)}.count
+        if count > 0 {
+            name = name + String(count)
+        }
         let newModel = SavedSpaceModel(name: name, sources: soundSpace.data, date: format.string(from: mytime))
         SavedData.shared.spaces.append(newModel)
         SavedData.saveData()
@@ -136,10 +139,6 @@ struct MainView: View {
     func delete(item: SoundViewModel) {
         soundSpace.data.removeAll(where: {$0.pitch == item.pitch})
         conductor.loadSounds(models: soundSpace.data)
-        print("deleted")
-        print(soundSpace.data.count)
-        //SavedData.shared.spaces.removeAll(where: {$0.name == item.name})
-        //SavedData.saveData()
     }
 }
 #Preview {

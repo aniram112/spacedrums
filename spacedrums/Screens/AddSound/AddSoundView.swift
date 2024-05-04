@@ -125,10 +125,3 @@ struct regular: ViewModifier {
 #Preview("detected"){
     AddSoundView(mode: .detected, pitch: 220)
 }
-
-/*struct AddSoundView_Previews: PreviewProvider {
- static var previews: some View {
- AddSoundView(mode: .listening)
- AddSoundView(mode: .detected)
- }
- }*/

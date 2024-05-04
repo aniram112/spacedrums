@@ -61,9 +61,9 @@ struct RouterView<Content: View>: View {
                     router.view(for: route)
                 }
         }.accentColor(.white)
-        .toolbarBackground(Color.pink, for: .navigationBar)
         .environmentObject(router)
         .environmentObject(soundSpace)
+        //.environment(\.colorScheme, .light)
 
         //.navigationBarHidden(true)
     }

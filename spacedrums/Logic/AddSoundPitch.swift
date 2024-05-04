@@ -49,6 +49,11 @@ class PitchDetector: ObservableObject, HasAudioEngine {
             self.engine.stop()
             let sorted = self.detectedPitches.sorted{ $0.pitch < $1.pitch }
 
+            if self.detectedPitches.count == 0 {
+                completionHandler(-1)
+                return
+            }
+            
             var median: Float = 0.0
             if sorted.count % 2 == 0 && sorted.count > 0 {
                 let first = sorted[(sorted.count / 2)].pitch

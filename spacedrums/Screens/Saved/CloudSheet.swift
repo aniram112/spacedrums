@@ -3,7 +3,6 @@ import SwiftUI
 import Firebase
 
 enum LoginState {
-    case unauthorized
     case login
     case save
 }
@@ -19,35 +18,35 @@ struct CloudSheet: View {
     @State private var sheetDetent: PresentationDetent = SheetFraction.compact
     @State private var email = ""
     @State private var password = ""
-    @State var loggedIn = false
-    @State var userId: String? = nil
+    @State private var errorLabel = " "
 
     var body: some View {
         ZStack {
-            ImageResources.background
+            ImageResources.sheet
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
                 .accessibilityHidden(true)
             switch mode {
-            case .unauthorized:
-                unauthorized
             case .login:
-                VStack {
+                VStack(spacing: 5) {
                     loginTextFields
+                    Text(errorLabel)
+                        .foregroundColor(.white)
+                        .font(.system(size: 20, weight: .regular))
+                        .padding(.top, 10)
                     loginButtons
                         .padding(.top, 80)
                 }
             case .save:
                 save
             }
-        }.onAppear(perform: {
+        }
+        .onAppear(perform: {
             Auth.auth().addStateDidChangeListener{ auth, user in
                 if user != nil {
                     mode = .save
-                    userId = user?.uid ?? nil
                     sheetDetent = SheetFraction.compact
-                    loggedIn.toggle()
                 } else {
                     mode = .login
                     sheetDetent = SheetFraction.full
@@ -58,23 +57,6 @@ struct CloudSheet: View {
         .presentationDetents(
             [SheetFraction.compact, SheetFraction.full], selection: $sheetDetent
         )
-    }
-
-    // юзлесс?
-    var unauthorized: some View {
-        VStack(spacing: 30) {
-            button(
-                text: "Login",
-                action: {
-                    mode = .login
-                    sheetDetent = SheetFraction.full
-                },
-                width: 180,
-                height: 82,
-                radius: 22,
-                fontSize: 30
-            )
-        }
     }
 
     var loginTextFields: some View {
@@ -125,11 +107,11 @@ struct CloudSheet: View {
             HStack(spacing: 30) {
                 button(
                     text: "Save",
-                    action: {}
+                    action: saveDataToFirebase
                 )
                 button(
                     text: "Load",
-                    action: fetchData
+                    action: fetchDataFromFirebase
                 )
 
             }.padding(.top, 40)
@@ -141,13 +123,31 @@ struct CloudSheet: View {
             )
         }
     }
+}
 
+extension CloudSheet {
     func login(){
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error != nil {
-                print(error ?? "error")
-                // показать ошибку
+                if let error = error as NSError? {
+                    if let errorCode = error.userInfo["FIRAuthErrorUserInfoNameKey"] as? String {
+                        if errorCode == "ERROR_INVALID_EMAIL" {
+                            errorLabel = "Invalid email"
+                        } else if errorCode == "ERROR_USER_NOT_FOUND" {
+                            errorLabel = "User not found"
+                        } else if errorCode == "ERROR_WRONG_PASSWORD" {
+                            errorLabel = "Wrong password"
+                        } else if errorCode == "ERROR_TOO_MANY_REQUESTS" {
+                            errorLabel = "Too many requests"
+                        } else {
+                            errorLabel = "Undefined error"
+                        }
+                    }
+                } else {
+                    errorLabel = "Undefined error"
+                }
             } else {
+                errorLabel = " "
                 mode = .save
                 sheetDetent = SheetFraction.compact
             }
@@ -157,8 +157,27 @@ struct CloudSheet: View {
     func register(){
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if error != nil {
-                print(error ?? "error")
-                // показать ошибку
+                if let error = error as NSError? {
+                    if let errorCode = error.userInfo["FIRAuthErrorUserInfoNameKey"] as? String {
+                        if errorCode == "ERROR_INVALID_EMAIL" {
+                            errorLabel = "Invalid email"
+                        } else if errorCode == "ERROR_EMAIL_ALREADY_IN_USE" {
+                            errorLabel = "Email is already in use"
+                        } else if errorCode == "ERROR_WEAK_PASSWORD" {
+                            errorLabel = "Weak password"
+                        } else if errorCode == "ERROR_TOO_MANY_REQUESTS" {
+                            errorLabel = "Too many requests"
+                        } else {
+                            errorLabel = "Undefined error"
+                        }
+                    }
+                } else {
+                    errorLabel = "Undefined error"
+                }
+            } else {
+                errorLabel = " "
+                mode = .save
+                sheetDetent = SheetFraction.compact
             }
         }
     }
@@ -166,20 +185,19 @@ struct CloudSheet: View {
     func logout(){
         do {
             try Auth.auth().signOut()
-            loggedIn.toggle()
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
     }
 
-    func fetchData() {
+    func fetchDataFromFirebase() {
         var savedSpaces = [SavedSpaceModel]()
         let id = Auth.auth().currentUser?.uid ?? ""
-         let docRef = Firestore.firestore()
-             .collection("spaces")
-             .document(id)
-             .collection("savedspaces")
-
+        let docRef = Firestore.firestore()
+            .collection("spaces")
+            .document(id)
+            .collection("savedspaces")
+        
         docRef.getDocuments { snapshot, error in
             guard error == nil else {
                 print(error ?? "error")
@@ -188,30 +206,39 @@ struct CloudSheet: View {
             if let snapshot = snapshot {
                 for document in snapshot.documents {
                     let data = document.data()
-                    let model = parseData(data)
+                    let model = SavedData.parseData(data)
                     savedSpaces.append(model)
                 }
                 SavedData.shared.spaces = savedSpaces
+                SavedData.saveData()
                 dismiss()
-
             }
         }
-     }
+    }
 
-    func parseData(_ data: [String: Any]) -> SavedSpaceModel{
-        let name = data["name"] as? String ?? ""
-        let date = data["date"] as? String ?? ""
-        let sources = data["sources"] as? [[String: Any]] ?? [[:]]
-        var models = [SoundViewModel]()
-        for source in sources {
-            let volume = source["volume"] as? Int ?? 0
-            let pitch = source["pitch"] as? Int ?? 0
-            let isActive = source["isActive"] as? Int ?? 0
-            let file = getFile(source["file"] as? String ?? "")
-            let model = SoundViewModel(file: file, volume: volume, isActive: isActive == 1, pitch: pitch)
-            models.append(model)
+    func saveDataToFirebase() {
+        let id = Auth.auth().currentUser?.uid ?? ""
+        let docRef = Firestore.firestore()
+            .collection("spaces")
+            .document(id)
+            .collection("savedspaces")
+
+        docRef.getDocuments { snapshot, error in
+            guard error == nil else {
+                print(error ?? "error")
+                return
+            }
+            if let snapshot = snapshot {
+                for document in snapshot.documents {
+                    document.reference.delete()
+                }
+            }
+
+            for space in SavedData.shared.spaces {
+                let data = SavedData.encodeData(space)
+                docRef.addDocument(data: data)
+            }
         }
-        return SavedSpaceModel(name: name, sources: models, date: date)
     }
 
 }

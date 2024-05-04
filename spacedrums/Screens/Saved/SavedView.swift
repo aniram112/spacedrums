@@ -13,11 +13,11 @@ struct SavedView: View {
     @EnvironmentObject var soundSpace: SoundSpaceModel
 
     @State var shouldPresentSheet = false
-    @State var loginMode: LoginState = .unauthorized
+    @State var loginMode: LoginState = .login
 
     var body: some View {
         VStack(spacing: 20) {
-            navbar
+            //navbar
             if SavedData.shared.spaces.isEmpty {
                 emptyView
                 Spacer().frame(maxWidth: .infinity)
@@ -43,6 +43,16 @@ struct SavedView: View {
         .background(ImageResources.background.resizable().scaledToFill().edgesIgnoringSafeArea(.all).accessibilityHidden(true))
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: openCloudStorage){
+                    Image(systemName: "cloud.fill")
+                        .font(.system(size: 20))
+                        .foregroundColor(.white)
+                }
+            }
+        }
     }
 
     var navbar: some View {
@@ -54,7 +64,6 @@ struct SavedView: View {
             }.frame(maxWidth: .infinity, alignment: .trailing)
 
         }.padding(.horizontal,20)
-
     }
 
     var emptyView: some View {
@@ -69,32 +78,9 @@ struct SavedView: View {
         .padding(.top, 300)
     }
 
-    var loginSheet: some View {
-        VStack(spacing: 30) {
-            button(
-                text: "Login",
-                action: {},
-                width: 180,
-                height: 82,
-                radius: 22,
-                fontSize: 30
-            )
-            button(
-                text: "Sign up",
-                action: {},
-                width: 180,
-                height: 82,
-                radius: 22,
-                fontSize: 30
-            )
-
-        }
-
-    }
-
     func openCloudStorage(){
         shouldPresentSheet.toggle()
-        loginMode = .unauthorized
+        loginMode = .login
     }
 
     func delete(item: SavedSpaceModel) {
@@ -103,7 +89,7 @@ struct SavedView: View {
     }
 
     func record(model: SavedSpaceModel) -> some View {
-        return ZStack{
+        return ZStack {
             Rectangle()
                 .background(.white.opacity(0.3))
                 .blendMode(.plusLighter)
