@@ -11,6 +11,7 @@ struct SavedView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var router: Router
     @EnvironmentObject var soundSpace: SoundSpaceModel
+    @Environment(\.dismiss) private var dismiss
 
     @State var shouldPresentSheet = false
     @State var loginMode: LoginState = .login

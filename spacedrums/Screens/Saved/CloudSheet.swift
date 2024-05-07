@@ -13,6 +13,9 @@ enum SheetFraction {
 }
 
 struct CloudSheet: View {
+
+    typealias Strings = StringResources.CloudSheet
+
     @Environment(\.dismiss) var dismiss
     @Binding var mode: LoginState
     @State private var sheetDetent: PresentationDetent = SheetFraction.compact
@@ -91,12 +94,14 @@ struct CloudSheet: View {
     var loginButtons: some View {
         HStack(spacing: 30) {
             button(
-                text: "Login",
-                action: login
+                text: Strings.login,
+                action: login,
+                width: 150
             )
             button(
-                text: "Sign up",
-                action: register
+                text: Strings.signUp,
+                action: register,
+                width: 150
             )
 
         }.padding(.horizontal,40)
@@ -106,17 +111,17 @@ struct CloudSheet: View {
         VStack(spacing: 60) {
             HStack(spacing: 30) {
                 button(
-                    text: "Save",
+                    text: Strings.save,
                     action: saveDataToFirebase
                 )
                 button(
-                    text: "Load",
+                    text: Strings.load,
                     action: fetchDataFromFirebase
                 )
 
             }.padding(.top, 40)
             button(
-                text: "Logout",
+                text: Strings.logout,
                 action: logout,
                 background: .clear,
                 fontSize: 16
@@ -129,23 +134,7 @@ extension CloudSheet {
     func login(){
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error != nil {
-                if let error = error as NSError? {
-                    if let errorCode = error.userInfo["FIRAuthErrorUserInfoNameKey"] as? String {
-                        if errorCode == "ERROR_INVALID_EMAIL" {
-                            errorLabel = "Invalid email"
-                        } else if errorCode == "ERROR_USER_NOT_FOUND" {
-                            errorLabel = "User not found"
-                        } else if errorCode == "ERROR_WRONG_PASSWORD" {
-                            errorLabel = "Wrong password"
-                        } else if errorCode == "ERROR_TOO_MANY_REQUESTS" {
-                            errorLabel = "Too many requests"
-                        } else {
-                            errorLabel = "Undefined error"
-                        }
-                    }
-                } else {
-                    errorLabel = "Undefined error"
-                }
+                parseError(error)
             } else {
                 errorLabel = " "
                 mode = .save
@@ -153,27 +142,11 @@ extension CloudSheet {
             }
         }
     }
-
+    
     func register(){
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if error != nil {
-                if let error = error as NSError? {
-                    if let errorCode = error.userInfo["FIRAuthErrorUserInfoNameKey"] as? String {
-                        if errorCode == "ERROR_INVALID_EMAIL" {
-                            errorLabel = "Invalid email"
-                        } else if errorCode == "ERROR_EMAIL_ALREADY_IN_USE" {
-                            errorLabel = "Email is already in use"
-                        } else if errorCode == "ERROR_WEAK_PASSWORD" {
-                            errorLabel = "Weak password"
-                        } else if errorCode == "ERROR_TOO_MANY_REQUESTS" {
-                            errorLabel = "Too many requests"
-                        } else {
-                            errorLabel = "Undefined error"
-                        }
-                    }
-                } else {
-                    errorLabel = "Undefined error"
-                }
+                parseError(error)
             } else {
                 errorLabel = " "
                 mode = .save
@@ -187,6 +160,30 @@ extension CloudSheet {
             try Auth.auth().signOut()
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
+        }
+    }
+
+    func parseError(_ error: Error?) {
+        if let error = error as NSError? {
+            if let errorCode = error.userInfo["FIRAuthErrorUserInfoNameKey"] as? String {
+                if errorCode == "ERROR_INVALID_EMAIL" {
+                    errorLabel = Strings.Errors.invalidEmail
+                } else if errorCode == "ERROR_EMAIL_ALREADY_IN_USE" {
+                    errorLabel = Strings.Errors.alreadyInUse
+                } else if errorCode == "ERROR_USER_NOT_FOUND" {
+                    errorLabel = Strings.Errors.notFound
+                } else if errorCode == "ERROR_WEAK_PASSWORD" {
+                    errorLabel = Strings.Errors.weakPassword
+                } else if errorCode == "ERROR_WRONG_PASSWORD" {
+                    errorLabel = Strings.Errors.wrongPassword
+                } else if errorCode == "ERROR_TOO_MANY_REQUESTS" {
+                    errorLabel = Strings.Errors.tooMany
+                } else {
+                    errorLabel = Strings.Errors.undefined
+                }
+            }
+        } else {
+            errorLabel = Strings.Errors.undefined
         }
     }
 

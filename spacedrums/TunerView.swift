@@ -156,7 +156,7 @@ struct TunerView: View {
         VStack(spacing: 50) {
             Text("\(conductor.data.pitch, specifier: "%0.1f")")
             Text("\(conductor.data.amplitude, specifier: "%0.1f")")
-            InputDevicePicker(device: conductor.initialDevice)
+            //InputDevicePicker(device: conductor.initialDevice)
             /*HStack {
              Text("Frequency")
              Spacer()
@@ -196,7 +196,7 @@ struct TunerView: View {
     }
 }
 
-struct InputDevicePicker: View {
+/*struct InputDevicePicker: View {
     @State var device: Device
 
     var body: some View {
@@ -221,4 +221,4 @@ struct InputDevicePicker: View {
             print(err)
         }
     }
-}
+}*/

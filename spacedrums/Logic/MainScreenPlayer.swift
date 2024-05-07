@@ -64,7 +64,7 @@ class MainConductor: ObservableObject, HasAudioEngine {
         guard let microphone = mic else { return }
         silence = Fader(microphone, gain: 0)
 
-        resume()
+        //resume()
     }
 
     init() {
@@ -82,7 +82,6 @@ class MainConductor: ObservableObject, HasAudioEngine {
             guard !sounds.isEmpty else { return }
             guard let sound = getClosestSound(Int(pitch)) else { return }
             instrument.volume = AUValue(sound.sound.volume)/100
-            print("yeet volume \(instrument.volume)")
             instrument.play(noteNumber: MIDINoteNumber(sound.midiNote))
             //print("yeet should play note")
         }
@@ -110,6 +109,9 @@ class MainConductor: ObservableObject, HasAudioEngine {
     }
     
     func resume(){
+        try? Settings.session.setActive(false, options: .notifyOthersOnDeactivation)
+        try? Settings.setSession(category: .playAndRecord, with: [.allowBluetooth, .defaultToSpeaker])
+        try? Settings.session.setActive(true, options: .notifyOthersOnDeactivation)
         try? engine.start()
         print("resume")
         guard let microphone = mic else { return }

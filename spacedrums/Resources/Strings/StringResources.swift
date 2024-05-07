@@ -129,4 +129,68 @@ enum StringResources {
 
     }
 
+    enum CloudSheet {
+        enum Errors {
+            static let undefined = NSLocalizedString(
+                "CloudSheet.Errors.undefined",
+                comment: "CloudSheet error text"
+            )
+            
+            static let invalidEmail = NSLocalizedString(
+                "CloudSheet.Errors.invalidEmail",
+                comment: "CloudSheet error text"
+            )
+
+            static let notFound = NSLocalizedString(
+                "CloudSheet.Errors.notFound",
+                comment: "CloudSheet error text"
+            )
+
+            static let wrongPassword = NSLocalizedString(
+                "CloudSheet.Errors.wrongPassword",
+                comment: "CloudSheet error text"
+            )
+
+            static let tooMany = NSLocalizedString(
+                "CloudSheet.Errors.tooMany",
+                comment: "CloudSheet error text"
+            )
+
+            static let alreadyInUse = NSLocalizedString(
+                "CloudSheet.Errors.alreadyInUse",
+                comment: "CloudSheet error text"
+            )
+
+            static let weakPassword = NSLocalizedString(
+                "CloudSheet.Errors.weakPassword",
+                comment: "CloudSheet error text"
+            )
+        }
+
+        static let login = NSLocalizedString(
+            "CloudSheet.login",
+            comment: "CloudSheet button"
+        )
+
+        static let signUp = NSLocalizedString(
+            "CloudSheet.signUp",
+            comment: "CloudSheet button"
+        )
+
+        static let logout = NSLocalizedString(
+            "CloudSheet.logout",
+            comment: "CloudSheet button"
+        )
+
+        static let load = NSLocalizedString(
+            "CloudSheet.load",
+            comment: "CloudSheet button"
+        )
+
+        static let save = NSLocalizedString(
+            "CloudSheet.save",
+            comment: "CloudSheet button"
+        )
+    }
+
 }

@@ -1,17 +1,18 @@
 import Foundation
 import SwiftUI
+import AudioKit
 
 struct MainView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.isPresented) var isPresented
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var router: Router
     @State private var showingAlert = false
+    @State var shouldPresentSheet = false
     @State private var name = ""
+
     @StateObject var conductor = MainConductor()
-    @State var inTrackerOn = true
 
     typealias Strings = StringResources.Main
-    //var delegate: SpaceDelegate?
 
     var mock = [
         SoundViewModel(file: .kick, volume: 80, isActive: true, pitch: 440),
@@ -42,25 +43,36 @@ struct MainView: View {
                             }
                     }.accessibilityElement(children: .contain)
                 }
-                .onChange(of: inTrackerOn) { newValue in
-                    if newValue {
-                        conductor.resume()
-                    } else {
-                        conductor.pause()
-                    }
-                }
                 .onChange(of: soundSpace.data){ newValue in
                     conductor.loadSounds(models: soundSpace.data)
                 }
-                .onAppear {
-                    if !soundSpace.data.isEmpty {
+                .onChange(of: isPresented) { newValue in
+                    if newValue {
+                        conductor.resume()
+                        print("main view is presented")
+                    } else {
+                        conductor.pause()
+                        print("main view is dismissed")
+                    }
+                }
+                .onFirstAppear {
+                    print("main view on first appear")
                         conductor.setup()
+                        conductor.pause()
+                        conductor.resume()
+                }
+                .onAppear {
+                    print("main view on appear")
+                    if !soundSpace.data.isEmpty {
                         conductor.loadSounds(models: soundSpace.data)
                     }
                     SavedData.loadData()
                 }
                 .listStyle(.plain)
             }
+        }
+        .sheet(isPresented: $shouldPresentSheet) {
+            MicSheet(microphone: conductor.initialDevice ?? AudioEngine.inputDevices[0])
         }
         //.background(Colors.backgroundGradient)
         .background(ImageResources.background.resizable().scaledToFill().ignoresSafeArea().accessibilityHidden(true))
@@ -76,7 +88,7 @@ struct MainView: View {
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(.white)
                         .fixedSize()
-                }//.frame(maxWidth: .infinity, alignment: .leading)
+                }
                 Button(action: { showingAlert.toggle() }){
                     Text(Strings.save)
                         .font(.system(size: 20, weight: .semibold))
@@ -87,6 +99,14 @@ struct MainView: View {
                         .foregroundColor(Color(red: 0.03, green: 0.4, blue: 0.38))
                     Button(Strings.Alert.save, action: saveSpace)
                     Button(Strings.Alert.cancel, role: .cancel) { }
+                }
+                if !soundSpace.data.isEmpty {
+                    Button(action: openMicSettings){
+                        Image(systemName: "mic.fill")
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(.white)
+                            .fixedSize()
+                    }
                 }
             }.frame(maxWidth: .infinity, alignment: .leading)
             Button(action: addSound){
@@ -112,14 +132,18 @@ struct MainView: View {
     }
 
     func addSound() {
-        inTrackerOn = false
         router.routeTo(.addSound(mode: .listening, pitch: 0))
     }
 
     func openSaved(){
-        inTrackerOn = false
         router.routeTo(.saved)
     }
+
+    func openMicSettings(){
+        shouldPresentSheet.toggle()
+        //стопить звук?
+    }
+
 
     func saveSpace(){
         let mytime = Date()
@@ -143,4 +167,30 @@ struct MainView: View {
 }
 #Preview {
     MainView()
+}
+
+
+public struct OnFirstAppearModifier: ViewModifier {
+
+    private let onFirstAppearAction: () -> ()
+    @State private var hasAppeared = false
+
+    public init(_ onFirstAppearAction: @escaping () -> ()) {
+        self.onFirstAppearAction = onFirstAppearAction
+    }
+
+    public func body(content: Content) -> some View {
+        content
+            .onAppear {
+                guard !hasAppeared else { return }
+                hasAppeared = true
+                onFirstAppearAction()
+            }
+    }
+}
+
+extension View {
+    func onFirstAppear(_ onFirstAppearAction: @escaping () -> () ) -> some View {
+        return modifier(OnFirstAppearModifier(onFirstAppearAction))
+    }
 }

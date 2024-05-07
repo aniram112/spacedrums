@@ -138,6 +138,210 @@
     "Category %@" : {
 
     },
+    "CloudSheet.Errors.alreadyInUse" : {
+      "comment" : "CloudSheet error text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email already in use"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email занят"
+          }
+        }
+      }
+    },
+    "CloudSheet.Errors.invalidEmail" : {
+      "comment" : "CloudSheet error text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid email"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неверный формат Email"
+          }
+        }
+      }
+    },
+    "CloudSheet.Errors.notFound" : {
+      "comment" : "CloudSheet error text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "User not found"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пользователь не найден"
+          }
+        }
+      }
+    },
+    "CloudSheet.Errors.tooMany" : {
+      "comment" : "CloudSheet error text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Too many reques"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Слишком много запросов"
+          }
+        }
+      }
+    },
+    "CloudSheet.Errors.undefined" : {
+      "comment" : "CloudSheet error text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Undefined error"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неизвестная ошибка"
+          }
+        }
+      }
+    },
+    "CloudSheet.Errors.weakPassword" : {
+      "comment" : "CloudSheet error text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weak password"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Слабый пароль"
+          }
+        }
+      }
+    },
+    "CloudSheet.Errors.wrongPassword" : {
+      "comment" : "CloudSheet error text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wrong password"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неверный пароль"
+          }
+        }
+      }
+    },
+    "CloudSheet.load" : {
+      "comment" : "CloudSheet button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Load"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загрузить"
+          }
+        }
+      }
+    },
+    "CloudSheet.login" : {
+      "comment" : "CloudSheet button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Войти"
+          }
+        }
+      }
+    },
+    "CloudSheet.logout" : {
+      "comment" : "CloudSheet button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logout"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выйти"
+          }
+        }
+      }
+    },
+    "CloudSheet.save" : {
+      "comment" : "CloudSheet button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить"
+          }
+        }
+      }
+    },
+    "CloudSheet.signUp" : {
+      "comment" : "CloudSheet button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign up"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регистрация"
+          }
+        }
+      }
+    },
     "Collection.add" : {
       "comment" : "Collection button",
       "localizations" : {
@@ -388,25 +592,16 @@
         }
       }
     },
+    "Microphone" : {
+
+    },
     "Password" : {
-
-    },
-    "PLAY" : {
-
-    },
-    "RECORD" : {
 
     },
     "Sound %@" : {
 
     },
     "Sounds grid" : {
-
-    },
-    "STOP" : {
-
-    },
-    "STOP RECORDING" : {
 
     }
   },
