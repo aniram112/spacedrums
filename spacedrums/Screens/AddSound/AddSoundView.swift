@@ -101,8 +101,7 @@ struct AddSoundView: View {
     }
 
     func tryAgain(){
-        //router.routeBack() // ui bag
-        router.routeTo(.addSound(mode: .listening, pitch: pitch))
+        router.routeBack()
     }
 
     private let mode: AddSoundMode

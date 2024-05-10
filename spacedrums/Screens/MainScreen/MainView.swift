@@ -48,31 +48,27 @@ struct MainView: View {
                 .onChange(of: soundSpace.data){ newValue in
                     conductor.loadSounds(models: soundSpace.data)
                 }
-                .onChange(of: isPresented) { newValue in
-                    if newValue {
-                        conductor.resume()
-                        print("main view is presented")
-                    } else {
-                        conductor.pause()
-                        print("main view is dismissed")
-                    }
-                }
-                .onFirstAppear {
-                    print("main view on first appear")
-                        conductor.setup()
-                        conductor.pause()
-                        conductor.resume()
-                        micSettings.setNewMic(device: conductor.initialDevice)
-                }
-                .onAppear {
-                    print("main view on appear")
-                    if !soundSpace.data.isEmpty {
-                        conductor.loadSounds(models: soundSpace.data)
-                    }
-                    SavedData.loadData()
-                }
                 .listStyle(.plain)
             }
+        }
+        .onFirstAppear {
+            print("main view on first appear")
+                conductor.setup()
+                conductor.pause()
+                conductor.resume()
+                micSettings.setNewMic(device: conductor.initialDevice)
+        }
+        .onAppear {
+            print("main view on appear")
+            if !soundSpace.data.isEmpty {
+                conductor.loadSounds(models: soundSpace.data)
+                conductor.resume()
+            }
+            SavedData.loadData()
+        }
+        .onDisappear {
+            print("main view on dissapear")
+            conductor.pause()
         }
         .sheet(isPresented: $shouldPresentSheet) {
             MicSheet()
@@ -103,14 +99,12 @@ struct MainView: View {
                     Button(Strings.Alert.save, action: saveSpace)
                     Button(Strings.Alert.cancel, role: .cancel) { }
                 }
-                if !soundSpace.data.isEmpty {
                     Button(action: openMicSettings){
                         Image(systemName: "mic.fill")
                             .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(.white)
                             .fixedSize()
                     }
-                }
             }.frame(maxWidth: .infinity, alignment: .leading)
             Button(action: addSound){
                 Text("+")
@@ -135,12 +129,10 @@ struct MainView: View {
     }
 
     func addSound() {
-        conductor.pause()
         router.routeTo(.addSound(mode: .listening, pitch: 0))
     }
 
     func openSaved(){
-        conductor.pause()
         router.routeTo(.saved)
     }
 

@@ -77,8 +77,9 @@ class MainConductor: ObservableObject, HasAudioEngine {
 
     func update(_ pitch: AUValue, _ amp: AUValue) {
         guard amp > 0.07 else { return }
-        //print("yeet \(pitch)")
+        //print("yeet \(pitch) \(amp)")
         if amp > 0.1 {
+            //print("yeet \(pitch) \(amp)")
             guard !sounds.isEmpty else { return }
             guard let sound = getClosestSound(Int(pitch)) else { return }
             instrument.volume = AUValue(sound.sound.volume)/100

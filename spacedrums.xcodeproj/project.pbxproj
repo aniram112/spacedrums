@@ -24,8 +24,9 @@
 		E313BD252BEE6E660096D7E1 /* Phonk in Resources */ = {isa = PBXBuildFile; fileRef = E313BD242BEE6E660096D7E1 /* Phonk */; };
 		E313BD272BEE6E6E0096D7E1 /* Phonk.swift in Sources */ = {isa = PBXBuildFile; fileRef = E313BD262BEE6E6E0096D7E1 /* Phonk.swift */; };
 		E313BD292BEE7BD50096D7E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E313BD282BEE7BD50096D7E1 /* Assets.xcassets */; };
+		E313BD2B2BEEACDB0096D7E1 /* Percussion in Resources */ = {isa = PBXBuildFile; fileRef = E313BD2A2BEEACDB0096D7E1 /* Percussion */; };
+		E313BD2D2BEEACEC0096D7E1 /* Percussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E313BD2C2BEEACEC0096D7E1 /* Percussion.swift */; };
 		E3762C222B62A97E000519DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3762C202B62A97E000519DE /* LaunchScreen.storyboard */; };
-		E3762C2A2B62AD43000519DE /* TunerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3762C292B62AD43000519DE /* TunerView.swift */; };
 		E3762C2D2B62AD53000519DE /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = E3762C2C2B62AD53000519DE /* AudioKit */; };
 		E3762C302B62AE60000519DE /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = E3762C2F2B62AE60000519DE /* AudioKitEX */; };
 		E3762C332B62AE6F000519DE /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = E3762C322B62AE6F000519DE /* AudioKitUI */; };
@@ -41,9 +42,7 @@
 		E3B724442BB86C3C00411ADC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E3B724432BB86C3C00411ADC /* Lottie */; };
 		E3B724492BB86E1A00411ADC /* sound-wave.json in Resources */ = {isa = PBXBuildFile; fileRef = E3B724482BB86E1A00411ADC /* sound-wave.json */; };
 		E3B7244C2BB8B99300411ADC /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7244B2BB8B99300411ADC /* Button.swift */; };
-		E3B7244E2BB9CBE000411ADC /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B7244D2BB9CBE000411ADC /* Players.swift */; };
 		E3D4EED02BD95782000D4F0C /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = E3D4EECF2BD95782000D4F0C /* Sliders */; };
-		E3D4EED22BD957AF000D4F0C /* SlidersExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D4EED12BD957AF000D4F0C /* SlidersExample.swift */; };
 		E3DB37A72BC323B8005838ED /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB37A62BC323B8005838ED /* Router.swift */; };
 		E3DB37A92BC339B0005838ED /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DB37A82BC339B0005838ED /* App.swift */; };
 		E3FD692A2BCA9AA20066352C /* CollectionViewPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FD69292BCA9AA20066352C /* CollectionViewPlayer.swift */; };
@@ -67,10 +66,11 @@
 		E313BD242BEE6E660096D7E1 /* Phonk */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Phonk; sourceTree = "<group>"; };
 		E313BD262BEE6E6E0096D7E1 /* Phonk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phonk.swift; sourceTree = "<group>"; };
 		E313BD282BEE7BD50096D7E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E313BD2A2BEEACDB0096D7E1 /* Percussion */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Percussion; sourceTree = "<group>"; };
+		E313BD2C2BEEACEC0096D7E1 /* Percussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Percussion.swift; sourceTree = "<group>"; };
 		E3762C122B62A97C000519DE /* SpaceDrums.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceDrums.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3762C212B62A97E000519DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3762C232B62A97E000519DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E3762C292B62AD43000519DE /* TunerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerView.swift; sourceTree = "<group>"; };
 		E37DB7B22BD45BD1002A328A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E37DB7B42BD45C2A002A328A /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		E37DB7B62BD45C7D002A328A /* StringResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringResources.swift; sourceTree = "<group>"; };
@@ -82,8 +82,6 @@
 		E3A8197B2B976B13001E5168 /* CollectionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellView.swift; sourceTree = "<group>"; };
 		E3B724482BB86E1A00411ADC /* sound-wave.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sound-wave.json"; sourceTree = "<group>"; };
 		E3B7244B2BB8B99300411ADC /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		E3B7244D2BB9CBE000411ADC /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
-		E3D4EED12BD957AF000D4F0C /* SlidersExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidersExample.swift; sourceTree = "<group>"; };
 		E3DB37A62BC323B8005838ED /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		E3DB37A82BC339B0005838ED /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		E3FD69292BCA9AA20066352C /* CollectionViewPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewPlayer.swift; sourceTree = "<group>"; };
@@ -155,12 +153,14 @@
 		E35380F02B79297C000D9152 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				E313BD2A2BEEACDB0096D7E1 /* Percussion */,
 				E313BD242BEE6E660096D7E1 /* Phonk */,
 				E313BD1E2BEC18600096D7E1 /* Xylo */,
 				E3FD69312BCC529A0066352C /* Drums */,
 				E313BD202BED88A40096D7E1 /* Drums.swift */,
 				E313BD222BED88AD0096D7E1 /* Xylo.swift */,
 				E313BD262BEE6E6E0096D7E1 /* Phonk.swift */,
+				E313BD2C2BEEACEC0096D7E1 /* Percussion.swift */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -192,10 +192,7 @@
 				E3762C232B62A97E000519DE /* Info.plist */,
 				E313BD172BE567290096D7E1 /* GoogleService-Info.plist */,
 				E313BD282BEE7BD50096D7E1 /* Assets.xcassets */,
-				E3762C292B62AD43000519DE /* TunerView.swift */,
-				E3B7244D2BB9CBE000411ADC /* Players.swift */,
 				E3DB37A82BC339B0005838ED /* App.swift */,
-				E3D4EED12BD957AF000D4F0C /* SlidersExample.swift */,
 			);
 			path = spacedrums;
 			sourceTree = "<group>";
@@ -372,6 +369,7 @@
 				E3B724492BB86E1A00411ADC /* sound-wave.json in Resources */,
 				E3762C222B62A97E000519DE /* LaunchScreen.storyboard in Resources */,
 				E313BD252BEE6E660096D7E1 /* Phonk in Resources */,
+				E313BD2B2BEEACDB0096D7E1 /* Percussion in Resources */,
 				E313BD292BEE7BD50096D7E1 /* Assets.xcassets in Resources */,
 				E313BD182BE567290096D7E1 /* GoogleService-Info.plist in Resources */,
 			);
@@ -386,7 +384,6 @@
 			files = (
 				E30A0CDF2BB0967000BD2716 /* AudioFileModel.swift in Sources */,
 				E313BD212BED88A40096D7E1 /* Drums.swift in Sources */,
-				E3D4EED22BD957AF000D4F0C /* SlidersExample.swift in Sources */,
 				E3A819722B976942001E5168 /* MainView.swift in Sources */,
 				E313BD232BED88AD0096D7E1 /* Xylo.swift in Sources */,
 				E3A819762B976A5C001E5168 /* AddSoundView.swift in Sources */,
@@ -394,15 +391,14 @@
 				E3A819742B97694D001E5168 /* SoundView.swift in Sources */,
 				E300D3752BAA3F1A00BF2947 /* Images.swift in Sources */,
 				E3DB37A72BC323B8005838ED /* Router.swift in Sources */,
+				E313BD2D2BEEACEC0096D7E1 /* Percussion.swift in Sources */,
 				E3A819782B976A67001E5168 /* SavedView.swift in Sources */,
 				E3DB37A92BC339B0005838ED /* App.swift in Sources */,
 				E3FD692A2BCA9AA20066352C /* CollectionViewPlayer.swift in Sources */,
-				E3B7244E2BB9CBE000411ADC /* Players.swift in Sources */,
 				E313BD272BEE6E6E0096D7E1 /* Phonk.swift in Sources */,
 				E3A8197A2B976A71001E5168 /* CollectionView.swift in Sources */,
 				E3B7244C2BB8B99300411ADC /* Button.swift in Sources */,
 				E3A8197C2B976B13001E5168 /* CollectionCellView.swift in Sources */,
-				E3762C2A2B62AD43000519DE /* TunerView.swift in Sources */,
 				E313BD112BE531EE0096D7E1 /* CloudSheet.swift in Sources */,
 				E3FD692C2BCA9AC40066352C /* AddSoundPitch.swift in Sources */,
 				E313BD1D2BEA7F730096D7E1 /* MicSheet.swift in Sources */,

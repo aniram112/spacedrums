@@ -86,7 +86,8 @@ struct CollectionView: View {
             pitch: currentSound.pitch
         )
         soundSpace.addSound(sound: newSound)
-        router.routeTo(.main)
+        //router.routeTo(.main)
+        router.popToRoot()
 
         /*action(file)
         self.audioSource.stopAudio()

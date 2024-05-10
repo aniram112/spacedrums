@@ -44,6 +44,12 @@ extension AudioFileModel {
                    AudioFileModel.chime, AudioFileModel.cowbellOne,
                    AudioFileModel.cowbellTwo, AudioFileModel.cowbellThree,
                    AudioFileModel.shaker, AudioFileModel.snarePhonk],
+        "Percussion" : [AudioFileModel.bongoOne, AudioFileModel.bongoTwo,
+                        AudioFileModel.bongoThree, AudioFileModel.bamboo,
+                        AudioFileModel.congaOne, AudioFileModel.congaTwo,
+                        AudioFileModel.congaThree, AudioFileModel.cowbell,
+                        AudioFileModel.taikoOne, AudioFileModel.taikoTwo,
+                        AudioFileModel.woodblock, AudioFileModel.bell],
         "Вeer" : []
     ]
 }

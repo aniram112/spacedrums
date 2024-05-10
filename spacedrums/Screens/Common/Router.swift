@@ -56,7 +56,7 @@ struct RouterView<Content: View>: View {
     }
 
     var body: some View {
-        NavigationStack(path: $router.path) {
+        NavigationStack(path: $router.path.animation()) {
             content
                 .navigationDestination(for: Router.Route.self) { route in
                     router.view(for: route)
@@ -74,10 +74,10 @@ struct RouterView<Content: View>: View {
 struct ContentView: View {
     var body: some View {
         RouterView {
-            //MainView()
+            MainView()
             //SavedView()
             //AddSoundView(mode: .listening, pitch: 220)
-            CollectionView(currentSound: .init(file: .clap, volume: 80, isActive: true, pitch: 220))
+            //CollectionView(currentSound: .init(file: .clap, volume: 80, isActive: true, pitch: 220))
         }
     }
 }

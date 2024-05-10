@@ -3,12 +3,29 @@ import AVFAudio
 import AudioKit
 
 class MicSettings: ObservableObject {
-    @Published var microphone: Device = .init(name: "no device", deviceID: "0")
+    @Published var microphone: Device = AudioEngine.inputDevices[0]
+    @Published var alreadySet = false
 
     func setNewMic(device: Device?) {
         if let device {
             microphone = device
+            do {
+                try AudioEngine.setInputDevice(device)
+            } catch let err {
+                print(device.deviceID)
+                print(err)
+            }
         }
+        alreadySet = true
+    }
+
+    func getInitialMic() -> Device? {
+        if alreadySet {  return microphone }
+        let session = AVAudioSession.sharedInstance()
+        if let portDescription = session.preferredInput ?? session.currentRoute.inputs.first {
+            return Device(portDescription: portDescription)
+        }
+        return nil
     }
 }
 
@@ -61,12 +78,13 @@ struct InputDevicePicker: View {
     }
 
     func setInputDevice(to device: Device) {
-        do {
+        micSettings.setNewMic(device: device)
+        /*do {
             try AudioEngine.setInputDevice(device)
             micSettings.setNewMic(device: device)
         } catch let err {
             print(device.deviceID)
             print(err)
-        }
+        }*/
     }
 }

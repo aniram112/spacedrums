@@ -132,7 +132,8 @@ struct SavedView: View {
     private func openSpace(_ sources: [SoundViewModel]) {
         print("pupupu")
         soundSpace.data = sources
-        router.routeTo(.main)
+        //router.routeTo(.main)
+        router.popToRoot()
     }
 }
 

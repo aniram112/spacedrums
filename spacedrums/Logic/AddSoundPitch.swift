@@ -20,12 +20,16 @@ class PitchDetector: ObservableObject, HasAudioEngine {
 
     let silence: Fader
 
-    var tracker: PitchTap!
+    var tracker: PitchTap?
 
     init() {
+        try? Settings.session.setActive(false, options: .notifyOthersOnDeactivation)
+        try? Settings.setSession(category: .playAndRecord, with: [.allowBluetooth, .defaultToSpeaker])
+        try? Settings.session.setActive(true, options: .notifyOthersOnDeactivation)
         guard let input = engine.input else { fatalError() }
-
         guard let device = engine.inputDevice else { fatalError() }
+
+        print("add \(device.deviceID)")
 
         initialDevice = device
 
@@ -38,14 +42,14 @@ class PitchDetector: ObservableObject, HasAudioEngine {
                 self.update(pitch[0], amp[0])
             }
         }
-        tracker.start()
+        tracker?.start()
     }
 
     func startDetection(completionHandler: @escaping (Int) -> Void){
         detectedPitches = []
-        tracker.start()
+        tracker?.start()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.tracker.stop()
+            self.tracker?.stop()
             self.engine.stop()
             let sorted = self.detectedPitches.sorted{ $0.pitch < $1.pitch }
 
