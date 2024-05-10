@@ -54,7 +54,7 @@ struct CollectionView: View {
     func category(name: String) -> some View {
         return Text(name)
             .font(.system(size: 20, weight: .bold))
-            .foregroundColor(.white)
+            .foregroundColor(data == AudioFileModel.collection[name] ? .white : .white.opacity(0.5))
             .onTapGesture {
                 self.data = AudioFileModel.collection[name]
             }

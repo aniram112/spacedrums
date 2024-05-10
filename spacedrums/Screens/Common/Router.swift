@@ -47,6 +47,7 @@ class Router: ObservableObject {
 struct RouterView<Content: View>: View {
     @StateObject var router: Router = Router()
     @StateObject var soundSpace = SoundSpaceModel()
+    @StateObject var microphone = MicSettings()
 
     private let content: Content
 
@@ -63,6 +64,7 @@ struct RouterView<Content: View>: View {
         }.accentColor(.white)
         .environmentObject(router)
         .environmentObject(soundSpace)
+        .environmentObject(microphone)
         //.environment(\.colorScheme, .light)
 
         //.navigationBarHidden(true)
@@ -72,10 +74,10 @@ struct RouterView<Content: View>: View {
 struct ContentView: View {
     var body: some View {
         RouterView {
-            MainView()
+            //MainView()
             //SavedView()
             //AddSoundView(mode: .listening, pitch: 220)
-           //CollectionView(currentSound: .init(file: .mock, volume: 80, isActive: true, pitch: 220))
+            CollectionView(currentSound: .init(file: .clap, volume: 80, isActive: true, pitch: 220))
         }
     }
 }

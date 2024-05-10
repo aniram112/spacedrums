@@ -5,7 +5,11 @@ import AudioKit
 struct MainView: View {
     @Environment(\.isPresented) var isPresented
     @Environment(\.colorScheme) var colorScheme
+
     @EnvironmentObject var router: Router
+    @EnvironmentObject var micSettings: MicSettings
+    @EnvironmentObject var soundSpace: SoundSpaceModel
+
     @State private var showingAlert = false
     @State var shouldPresentSheet = false
     @State private var name = ""
@@ -20,8 +24,6 @@ struct MainView: View {
     ]
 
     //@State var data: [SoundViewModel] = []
-
-    @EnvironmentObject var soundSpace: SoundSpaceModel
 
     var body: some View {
         VStack {
@@ -60,6 +62,7 @@ struct MainView: View {
                         conductor.setup()
                         conductor.pause()
                         conductor.resume()
+                        micSettings.setNewMic(device: conductor.initialDevice)
                 }
                 .onAppear {
                     print("main view on appear")
@@ -72,7 +75,7 @@ struct MainView: View {
             }
         }
         .sheet(isPresented: $shouldPresentSheet) {
-            MicSheet(microphone: conductor.initialDevice ?? AudioEngine.inputDevices[0])
+            MicSheet()
         }
         //.background(Colors.backgroundGradient)
         .background(ImageResources.background.resizable().scaledToFill().ignoresSafeArea().accessibilityHidden(true))
@@ -132,10 +135,12 @@ struct MainView: View {
     }
 
     func addSound() {
+        conductor.pause()
         router.routeTo(.addSound(mode: .listening, pitch: 0))
     }
 
     func openSaved(){
+        conductor.pause()
         router.routeTo(.saved)
     }
 

@@ -2,9 +2,18 @@ import SwiftUI
 import AVFAudio
 import AudioKit
 
+class MicSettings: ObservableObject {
+    @Published var microphone: Device = .init(name: "no device", deviceID: "0")
+
+    func setNewMic(device: Device?) {
+        if let device {
+            microphone = device
+        }
+    }
+}
+
 struct MicSheet: View {
-    @Environment(\.dismiss) var dismiss
-    @State var microphone : Device
+    @EnvironmentObject var micSettings: MicSettings
 
     var body: some View {
         ZStack{
@@ -18,10 +27,10 @@ struct MicSheet: View {
                 Text("Microphone")
                     .foregroundColor(.white)
                     .font(.system(size: 40, weight: .semibold))
-                Text(microphone.deviceID)
+                Text(micSettings.microphone.deviceID)
                     .foregroundColor(.white)
                     .font(.system(size: 20, weight: .regular))
-                InputDevicePicker(device: $microphone)
+                InputDevicePicker(device: micSettings.microphone)
             }
         }
         .presentationDragIndicator(.visible)
@@ -32,7 +41,8 @@ struct MicSheet: View {
 }
 
 struct InputDevicePicker: View {
-    @Binding var device: Device
+    @State var device: Device
+    @EnvironmentObject var micSettings: MicSettings
 
     var body: some View {
         Picker("Input: \(device.deviceID)", selection: $device) {
@@ -53,6 +63,7 @@ struct InputDevicePicker: View {
     func setInputDevice(to device: Device) {
         do {
             try AudioEngine.setInputDevice(device)
+            micSettings.setNewMic(device: device)
         } catch let err {
             print(device.deviceID)
             print(err)
