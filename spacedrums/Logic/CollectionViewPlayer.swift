@@ -9,7 +9,7 @@ class CollectionViewPlayer: ObservableObject, HasAudioEngine  {
     func setup() {
         engine.output = player
         try? Settings.session.setActive(false, options: .notifyOthersOnDeactivation)
-        try? Settings.setSession(category: .playAndRecord, with: [.allowBluetooth, .defaultToSpeaker])
+        try? Settings.setSession(category: .playback, with: [.allowBluetooth])
         try? Settings.session.setActive(true, options: .notifyOthersOnDeactivation)
         //try? engine.start()
     }

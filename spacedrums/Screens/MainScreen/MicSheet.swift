@@ -7,6 +7,7 @@ class MicSettings: ObservableObject {
     @Published var alreadySet = false
 
     func setNewMic(device: Device?) {
+        print("setNewMic \(device?.deviceID)")
         if let device {
             microphone = device
             do {
@@ -20,6 +21,7 @@ class MicSettings: ObservableObject {
     }
 
     func getInitialMic() -> Device? {
+        print("alreadySet \(alreadySet)")
         if alreadySet {  return microphone }
         let session = AVAudioSession.sharedInstance()
         if let portDescription = session.preferredInput ?? session.currentRoute.inputs.first {
@@ -41,7 +43,7 @@ struct MicSheet: View {
                 .accessibilityHidden(true)
 
             VStack(spacing: 20) {
-                Text("Microphone")
+                Text(StringResources.Main.microphone)
                     .foregroundColor(.white)
                     .font(.system(size: 40, weight: .semibold))
                 Text(micSettings.microphone.deviceID)

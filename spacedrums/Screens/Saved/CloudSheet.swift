@@ -225,6 +225,7 @@ extension CloudSheet {
                 print(error ?? "error")
                 return
             }
+
             if let snapshot = snapshot {
                 for document in snapshot.documents {
                     document.reference.delete()

@@ -23,6 +23,11 @@ enum StringResources {
             comment: "Save button"
         )
 
+        static let microphone = NSLocalizedString(
+            "Main.microphone",
+            comment: "microphone sheet"
+        )
+
         enum Alert {
 
             static let title = NSLocalizedString(

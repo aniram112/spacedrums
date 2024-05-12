@@ -31,7 +31,7 @@ struct SavedView: View {
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
-                        }
+                        }.frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                     }
                 }
                 .listStyle(.plain)

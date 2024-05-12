@@ -53,18 +53,19 @@ struct MainView: View {
         }
         .onFirstAppear {
             print("main view on first appear")
-                conductor.setup()
-                conductor.pause()
-                conductor.resume()
-                micSettings.setNewMic(device: conductor.initialDevice)
+            conductor.setup()
+            conductor.pause()
+            conductor.resume()
+            micSettings.setNewMic(device: conductor.initialDevice)
+            SavedData.loadData()
         }
         .onAppear {
             print("main view on appear")
             if !soundSpace.data.isEmpty {
                 conductor.loadSounds(models: soundSpace.data)
+                micSettings.setNewMic(device: micSettings.getInitialMic())
                 conductor.resume()
             }
-            SavedData.loadData()
         }
         .onDisappear {
             print("main view on dissapear")

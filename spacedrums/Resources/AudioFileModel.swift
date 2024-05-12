@@ -49,8 +49,7 @@ extension AudioFileModel {
                         AudioFileModel.congaOne, AudioFileModel.congaTwo,
                         AudioFileModel.congaThree, AudioFileModel.cowbell,
                         AudioFileModel.taikoOne, AudioFileModel.taikoTwo,
-                        AudioFileModel.woodblock, AudioFileModel.bell],
-        "Вeer" : []
+                        AudioFileModel.woodblock, AudioFileModel.bell]
     ]
 }
 

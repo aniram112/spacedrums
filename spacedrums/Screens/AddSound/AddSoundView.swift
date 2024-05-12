@@ -9,7 +9,7 @@ enum AddSoundMode {
 
 struct AddSoundView: View {
     @EnvironmentObject var router: Router
-    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var micSettings: MicSettings
 
     typealias Strings = StringResources.AddSound
 
@@ -90,6 +90,7 @@ struct AddSoundView: View {
     func listen() {
         let detector = PitchDetector()
         detector.start()
+        micSettings.setNewMic(device: micSettings.getInitialMic())
         detector.startDetection { p in
             router.routeTo(.addSound(mode: .detected, pitch: p))
         }

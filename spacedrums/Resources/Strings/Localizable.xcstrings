@@ -453,6 +453,23 @@
         }
       }
     },
+    "Main.microphone" : {
+      "comment" : "microphone sheet",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Microphone"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Микрофон"
+          }
+        }
+      }
+    },
     "Main.open" : {
       "comment" : "Open button",
       "localizations" : {
@@ -588,9 +605,6 @@
           }
         }
       }
-    },
-    "Microphone" : {
-
     },
     "Password" : {
 

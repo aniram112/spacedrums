@@ -12,6 +12,10 @@ class SavedData {
         SavedSpaceModel(
             name: "space",
             sources: [SoundViewModel(file: .clap, volume: 55, isActive: true, pitch: 123)],
+            date: "04.05.2024 15:55"),
+        SavedSpaceModel(
+            name: "two",
+            sources: [SoundViewModel(file: .clap, volume: 55, isActive: true, pitch: 123)],
             date: "04.05.2024 15:55")
     ]
     //[SavedSpaceModel]()

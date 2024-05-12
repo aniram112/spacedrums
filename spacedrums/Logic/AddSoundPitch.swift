@@ -32,7 +32,6 @@ class PitchDetector: ObservableObject, HasAudioEngine {
         print("add \(device.deviceID)")
 
         initialDevice = device
-
         mic = input
         silence = Fader(mic, gain: 0)
         engine.output = silence
