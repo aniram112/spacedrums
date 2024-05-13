@@ -1,6 +1,7 @@
 import SwiftUI
 import AVFAudio
 import AudioKit
+import Pulse
 
 class MicSettings: ObservableObject {
     @Published var microphone: Device = AudioEngine.inputDevices[0]
@@ -8,6 +9,7 @@ class MicSettings: ObservableObject {
 
     func setNewMic(device: Device?) {
         print("setNewMic \(device?.deviceID)")
+        LoggerStore.shared.storeMessage(label: "setNewMic \(device?.deviceID ?? "nil")", level: .notice, message: "setNewMic \(device?.deviceID ?? "nil")")
         if let device {
             microphone = device
             do {
@@ -22,6 +24,7 @@ class MicSettings: ObservableObject {
 
     func getInitialMic() -> Device? {
         print("alreadySet \(alreadySet)")
+        LoggerStore.shared.storeMessage(label: "alreadySet \(self.alreadySet)", level: .notice, message: "alreadySet \(self.alreadySet)")
         if alreadySet {  return microphone }
         let session = AVAudioSession.sharedInstance()
         if let portDescription = session.preferredInput ?? session.currentRoute.inputs.first {

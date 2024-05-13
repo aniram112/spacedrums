@@ -16,7 +16,6 @@
 		E313BD142BE558E60096D7E1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E313BD132BE558E60096D7E1 /* FirebaseAuth */; };
 		E313BD162BE558E60096D7E1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E313BD152BE558E60096D7E1 /* FirebaseFirestore */; };
 		E313BD182BE567290096D7E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E313BD172BE567290096D7E1 /* GoogleService-Info.plist */; };
-		E313BD1B2BE7CD7C0096D7E1 /* NavigationTransitions in Frameworks */ = {isa = PBXBuildFile; productRef = E313BD1A2BE7CD7C0096D7E1 /* NavigationTransitions */; };
 		E313BD1D2BEA7F730096D7E1 /* MicSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E313BD1C2BEA7F730096D7E1 /* MicSheet.swift */; };
 		E313BD1F2BEC18610096D7E1 /* Xylo in Resources */ = {isa = PBXBuildFile; fileRef = E313BD1E2BEC18600096D7E1 /* Xylo */; };
 		E313BD212BED88A40096D7E1 /* Drums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E313BD202BED88A40096D7E1 /* Drums.swift */; };
@@ -26,6 +25,8 @@
 		E313BD292BEE7BD50096D7E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E313BD282BEE7BD50096D7E1 /* Assets.xcassets */; };
 		E313BD2B2BEEACDB0096D7E1 /* Percussion in Resources */ = {isa = PBXBuildFile; fileRef = E313BD2A2BEEACDB0096D7E1 /* Percussion */; };
 		E313BD2D2BEEACEC0096D7E1 /* Percussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E313BD2C2BEEACEC0096D7E1 /* Percussion.swift */; };
+		E3158AA32BF2ABBC0003BD9F /* Pulse in Frameworks */ = {isa = PBXBuildFile; productRef = E3158AA22BF2ABBC0003BD9F /* Pulse */; };
+		E3158AA52BF2ABBC0003BD9F /* PulseUI in Frameworks */ = {isa = PBXBuildFile; productRef = E3158AA42BF2ABBC0003BD9F /* PulseUI */; };
 		E3762C222B62A97E000519DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3762C202B62A97E000519DE /* LaunchScreen.storyboard */; };
 		E3762C2D2B62AD53000519DE /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = E3762C2C2B62AD53000519DE /* AudioKit */; };
 		E3762C302B62AE60000519DE /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = E3762C2F2B62AE60000519DE /* AudioKitEX */; };
@@ -99,9 +100,10 @@
 				E3762C2D2B62AD53000519DE /* AudioKit in Frameworks */,
 				E3762C332B62AE6F000519DE /* AudioKitUI in Frameworks */,
 				E3D4EED02BD95782000D4F0C /* Sliders in Frameworks */,
-				E313BD1B2BE7CD7C0096D7E1 /* NavigationTransitions in Frameworks */,
 				E300D3782BAA442800BF2947 /* SmoothGradient in Frameworks */,
+				E3158AA32BF2ABBC0003BD9F /* Pulse in Frameworks */,
 				E3762C362B62AE81000519DE /* SoundpipeAudioKit in Frameworks */,
+				E3158AA52BF2ABBC0003BD9F /* PulseUI in Frameworks */,
 				E313BD162BE558E60096D7E1 /* FirebaseFirestore in Frameworks */,
 				E3762C302B62AE60000519DE /* AudioKitEX in Frameworks */,
 				E3B724442BB86C3C00411ADC /* Lottie in Frameworks */,
@@ -307,7 +309,8 @@
 				E3D4EECF2BD95782000D4F0C /* Sliders */,
 				E313BD132BE558E60096D7E1 /* FirebaseAuth */,
 				E313BD152BE558E60096D7E1 /* FirebaseFirestore */,
-				E313BD1A2BE7CD7C0096D7E1 /* NavigationTransitions */,
+				E3158AA22BF2ABBC0003BD9F /* Pulse */,
+				E3158AA42BF2ABBC0003BD9F /* PulseUI */,
 			);
 			productName = spacedrums;
 			productReference = E3762C122B62A97C000519DE /* SpaceDrums.app */;
@@ -347,7 +350,7 @@
 				E3B724422BB86C3C00411ADC /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				E3D4EECE2BD95782000D4F0C /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 				E313BD122BE558E60096D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				E313BD192BE7CD7C0096D7E1 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */,
+				E3158AA12BF2ABBC0003BD9F /* XCRemoteSwiftPackageReference "Pulse" */,
 			);
 			productRefGroup = E3762C132B62A97C000519DE /* Products */;
 			projectDirPath = "";
@@ -647,12 +650,12 @@
 				minimumVersion = 10.25.0;
 			};
 		};
-		E313BD192BE7CD7C0096D7E1 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */ = {
+		E3158AA12BF2ABBC0003BD9F /* XCRemoteSwiftPackageReference "Pulse" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/davdroman/swiftui-navigation-transitions.git";
+			repositoryURL = "https://github.com/kean/Pulse";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.13.3;
+				minimumVersion = 4.1.1;
 			};
 		};
 		E3762C2B2B62AD53000519DE /* XCRemoteSwiftPackageReference "AudioKit" */ = {
@@ -721,10 +724,15 @@
 			package = E313BD122BE558E60096D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		E313BD1A2BE7CD7C0096D7E1 /* NavigationTransitions */ = {
+		E3158AA22BF2ABBC0003BD9F /* Pulse */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E313BD192BE7CD7C0096D7E1 /* XCRemoteSwiftPackageReference "swiftui-navigation-transitions" */;
-			productName = NavigationTransitions;
+			package = E3158AA12BF2ABBC0003BD9F /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = Pulse;
+		};
+		E3158AA42BF2ABBC0003BD9F /* PulseUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3158AA12BF2ABBC0003BD9F /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = PulseUI;
 		};
 		E3762C2C2B62AD53000519DE /* AudioKit */ = {
 			isa = XCSwiftPackageProductDependency;

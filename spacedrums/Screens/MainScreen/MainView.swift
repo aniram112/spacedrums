@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import AudioKit
+import Pulse
 
 struct MainView: View {
     @Environment(\.isPresented) var isPresented
@@ -22,8 +23,6 @@ struct MainView: View {
         SoundViewModel(file: .kick, volume: 80, isActive: true, pitch: 440),
         SoundViewModel(file: .clap, volume: 70, isActive: false, pitch: 220),
     ]
-
-    //@State var data: [SoundViewModel] = []
 
     var body: some View {
         VStack {
@@ -53,6 +52,7 @@ struct MainView: View {
         }
         .onFirstAppear {
             print("main view on first appear")
+            LoggerStore.shared.storeMessage(label: "main view on first appear", level: .notice, message: "main view on first appear")
             conductor.setup()
             conductor.pause()
             conductor.resume()
@@ -61,11 +61,12 @@ struct MainView: View {
         }
         .onAppear {
             print("main view on appear")
+            LoggerStore.shared.storeMessage(label: "main view on appear", level: .notice, message: "main view on appear")
             if !soundSpace.data.isEmpty {
                 conductor.loadSounds(models: soundSpace.data)
-                micSettings.setNewMic(device: micSettings.getInitialMic())
                 conductor.resume()
             }
+            micSettings.setNewMic(device: micSettings.getInitialMic())
         }
         .onDisappear {
             print("main view on dissapear")
@@ -134,10 +135,12 @@ struct MainView: View {
     }
 
     func openSaved(){
+        LoggerStore.shared.storeMessage(label: "open saved", level: .notice, message: "open saved")
         router.routeTo(.saved)
     }
 
     func openMicSettings(){
+        LoggerStore.shared.storeMessage(label: "open sheet", level: .notice, message: "open sheet")
         shouldPresentSheet.toggle()
         //стопить звук?
     }
