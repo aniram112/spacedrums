@@ -64,6 +64,40 @@
         }
       }
     },
+    "AddSound.Detected.bottomTextNoSound" : {
+      "comment" : "AddSound text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попробовать еще раз?"
+          }
+        }
+      }
+    },
+    "AddSound.Detected.cancel" : {
+      "comment" : "AddSound button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
     "AddSound.Detected.frequency" : {
       "comment" : "AddSound button",
       "localizations" : {
@@ -94,6 +128,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Определенная\nчастота"
+          }
+        }
+      }
+    },
+    "AddSound.Detected.topTextNoSound" : {
+      "comment" : "AddSound text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No sound detected"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось услышать звуки"
           }
         }
       }

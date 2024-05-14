@@ -121,6 +121,16 @@ enum StringResources {
                 comment: "AddSound text"
             )
 
+            static let topTextNoSound = NSLocalizedString(
+                "AddSound.Detected.topTextNoSound",
+                comment: "AddSound text"
+            )
+
+            static let bottomTextNoSound = NSLocalizedString(
+                "AddSound.Detected.bottomTextNoSound",
+                comment: "AddSound text"
+            )
+
             static let add = NSLocalizedString(
                 "AddSound.Detected.add",
                 comment: "AddSound button"
@@ -128,6 +138,11 @@ enum StringResources {
 
             static let again = NSLocalizedString(
                 "AddSound.Detected.again",
+                comment: "AddSound button"
+            )
+
+            static let cancel = NSLocalizedString(
+                "AddSound.Detected.cancel",
                 comment: "AddSound button"
             )
         }

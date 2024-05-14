@@ -24,9 +24,11 @@ struct SoundView: View {
                 .foregroundColor(model.isActive ? .clear : Color(red: 0.2, green: 0.2, blue: 0.2))
                 .background(.white.opacity(0.3))
                 .blendMode(model.isActive ? .plusLighter : .sourceAtop)
-                .frame(width: 350, height: 130)
-                .fixedSize()
                 .cornerRadius(20)
+                .padding(.horizontal, 5)
+                .frame(height: 130)
+                //.fixedSize()
+
                 .accessibilityLabel(model.isActive ? "active sound cell" : "disabled sound cell")
 
             HStack(alignment: .center, spacing: 0) {
@@ -57,7 +59,8 @@ struct SoundView: View {
                     }
 
                 }
-            }.frame(width: 300, height: 130).fixedSize()
+            }.padding(.horizontal, 20)
+            //.frame(width: 300, height: 130).fixedSize()
         }
         .listRowBackground(Color.clear)
         .listRowSeparator(.hidden)

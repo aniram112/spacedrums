@@ -20,21 +20,31 @@ struct AddSoundView: View {
     //@Environment(\.presentationMode) var presentationMode =
 
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack(alignment: .center) {
             ImageResources.background
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
                 .accessibilityHidden(true)
-            switch mode {
-            case .listening:
-                listening.padding(.top, 130)
-            case .detected:
-                detected.padding(.top, 130)
-            }
+            content.padding(.bottom, 100)
         }
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    var content: some View {
+        VStack {
+            switch mode {
+            case .listening:
+                listening
+            case .detected:
+                if pitch == -1 {
+                    noSound
+                } else {
+                    detected
+                }
+            }
+        }
     }
 
     var listening: some View {
@@ -65,8 +75,26 @@ struct AddSoundView: View {
             frequency.padding(.bottom, 80)
             Text(Strings.Detected.bottomText).foregroundColor(.white).modifier(regular()).padding(.bottom, 50)
             HStack(alignment: .center, spacing: 40) {
-                button(text: Strings.Detected.add, action: usePitch)
-                button(text: Strings.Detected.again, action: tryAgain)
+                    button(text: Strings.Detected.add, action: usePitch)
+                    button(text: Strings.Detected.again, action: tryAgain)
+            }
+
+        }
+
+    }
+
+    var noSound: some View {
+        VStack {
+            Text(Strings.Detected.topTextNoSound)
+                .foregroundColor(.white)
+                .font(.system(size: 40, weight: .semibold))
+                .padding(.bottom, 80)
+                .multilineTextAlignment(.center)
+            //frequency.padding(.bottom, 80)
+            Text(Strings.Detected.bottomTextNoSound).foregroundColor(.white).modifier(regular()).padding(.bottom, 50)
+            HStack(alignment: .center, spacing: 40) {
+                    button(text: Strings.Detected.cancel, action: cancelDetection)
+                    button(text: Strings.Detected.again, action: tryAgain)
             }
 
         }
@@ -103,6 +131,10 @@ struct AddSoundView: View {
 
     func tryAgain(){
         router.routeBack()
+    }
+
+    func cancelDetection(){
+        router.popToRoot()
     }
 
     private let mode: AddSoundMode

@@ -32,7 +32,7 @@ struct MainView: View {
                 Spacer()
             } else {
                 List{
-                    ForEach(soundSpace.data, id: \.file.name) { item in
+                    ForEach(soundSpace.data, id: \.pitch) { item in
                         SoundView(model: item, muteButton: soundSpace.muteSound)
                             .padding(.bottom, 20)
                             .swipeActions(edge: .trailing) {
@@ -41,9 +41,9 @@ struct MainView: View {
                                 } label: {
                                     Label("Delete", systemImage: "trash")
                                 }
-                            }
+                            }.frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                     }.accessibilityElement(children: .contain)
-                }
+                }.scrollIndicators(.hidden)
                 .onChange(of: soundSpace.data){ newValue in
                     conductor.loadSounds(models: soundSpace.data)
                 }
@@ -126,8 +126,7 @@ struct MainView: View {
             height: 110,
             radius: 30,
             fontSize: 40
-        )
-        .padding(.top, 300)
+        ).frame(minHeight: 0, maxHeight: .infinity, alignment: .center)
     }
 
     func addSound() {
